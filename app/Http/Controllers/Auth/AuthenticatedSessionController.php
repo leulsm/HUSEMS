@@ -37,13 +37,13 @@ class AuthenticatedSessionController extends Controller
         } elseif ($user->hasRole('student')) {
             return redirect()->intended(RouteServiceProvider::STUDENT);
         }
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
      * Destroy an authenticated session.
      */
+
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
