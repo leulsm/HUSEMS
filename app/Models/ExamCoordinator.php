@@ -20,4 +20,9 @@ class ExamCoordinator extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function examSetups()
+    {
+        return $this->hasMany(ExamSetup::class);
+    }
 }
