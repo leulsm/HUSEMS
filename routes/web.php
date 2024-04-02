@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\ExamCoordinator\AnswerChoiceController;
 use App\Http\Controllers\ExamCoordinator\ExamCoordinatorController;
 use App\Http\Controllers\ExamCoordinator\ExamManagementController;
 use App\Http\Controllers\ExamCoordinator\QuestionController;
@@ -45,6 +46,7 @@ Route::middleware(['auth', 'role:examCoordinator'])->group(function () {
     Route::get('examCoordinator/dashboard', [ExamCoordinatorController::class, 'dashboard'])->name('examCoordinator.dashboard');
     Route::resource('examManagement', ExamManagementController::class);
     Route::resource('questionManagement', QuestionController::class);
+    Route::resource('answerChoiceManagement', AnswerChoiceController::class);
 });
 
 // student

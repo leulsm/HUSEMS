@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Question</h1>
+            <h1>Answer Choice</h1>
         </div>
 
         <div class="row">
@@ -49,13 +49,13 @@
                                         </a>
                                     </div>
                                 </div>
-                                <a href="{{ route('questionManagement.create', ['examSetupId' => $examSetup->id]) }}"
+                                <a href="{{ route('answerChoiceManagement.create', ['examSetupId' => $examSetup->id]) }}"
                                     class="">
                                     <div class="row">
                                         <div class="col-12">
-                                            <form action="GET" class="dropzone" id="mydropzone">
-                                                <div class="mx-auto my-3 add-question">Add Question</div>
-                                            </form>
+
+                                            <div class="text-center my-3 add-question">View Questions</div>
+
                                         </div>
                                     </div>
                                 </a>

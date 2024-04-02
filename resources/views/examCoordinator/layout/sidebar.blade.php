@@ -60,7 +60,8 @@
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('examManagement.index') }}">Exam Setup</a></li>
                     <li><a class="nav-link" href="{{ route('questionManagement.index') }}">Question</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Option</a></li>
+                    <li><a class="nav-link" href="{{ route('answerChoiceManagement.index') }}">Answer Options</a></li>
+
                 </ul>
             </li>
         </ul>

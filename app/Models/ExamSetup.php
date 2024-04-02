@@ -24,4 +24,8 @@ class ExamSetup extends Model
     {
         return $this->belongsTo(ExamCoordinator::class);
     }
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }
