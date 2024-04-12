@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('exam_coordinator_id');
             $table->string('exam_title');
             $table->string('exam_type');
-            $table->date('date');
-            $table->time('time');
+            // $table->date('date');
+            $table->time('duration_time');
             $table->boolean('status')->default(false);;
             $table->integer('total_mark');
             $table->integer('pass_mark');

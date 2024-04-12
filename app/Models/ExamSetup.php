@@ -12,8 +12,7 @@ class ExamSetup extends Model
     protected $fillable = [
         'exam_title',
         'exam_type',
-        'date',
-        'time',
+        'duration_time',
         'status',
         'total_mark',
         'pass_mark',
@@ -27,5 +26,10 @@ class ExamSetup extends Model
     public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
     }
 }

@@ -48,7 +48,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="active"><a class="nav-link" href="{{ route('examCoordinator.dashboard') }}"><i
-                        class="fas fa-fire"></i><span>General
+                        class="fas fa-fire"></i><span>
                         Dashboard</span></a>
             </li>
             {{-- <li><a class="nav-link" href="{{ route('examManagement.index') }}"><i class="fa-solid fa-pen"></i>
@@ -61,6 +61,15 @@
                     <li><a class="nav-link" href="{{ route('examManagement.index') }}">Exam Setup</a></li>
                     <li><a class="nav-link" href="{{ route('questionManagement.index') }}">Question</a></li>
                     <li><a class="nav-link" href="{{ route('answerChoiceManagement.index') }}">Answer Options</a></li>
+
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>Student Management</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{ route('studentManagement.index') }}">Add Student</a></li>
+
 
                 </ul>
             </li>

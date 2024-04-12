@@ -7,6 +7,7 @@ use App\Http\Controllers\ExamCoordinator\ExamManagementController;
 use App\Http\Controllers\ExamCoordinator\QuestionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\StudentController;
+use App\Http\Controllers\ExamCoordinator\StudentController as StudentC;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,7 @@ Route::middleware(['auth', 'role:examCoordinator'])->group(function () {
     Route::resource('examManagement', ExamManagementController::class);
     Route::resource('questionManagement', QuestionController::class);
     Route::resource('answerChoiceManagement', AnswerChoiceController::class);
+    Route::resource('studentManagement', StudentC::class);
 });
 
 // student

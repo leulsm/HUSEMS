@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests\ExamCoordinator;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ExamSetupRequest extends FormRequest
+class StudentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +25,11 @@ class ExamSetupRequest extends FormRequest
     {
         return [
             //
-            // 'exam_coordinator_id' => 'required|exists:users,id',
-            'exam_title' => 'required|string',
-            'exam_type' => 'required|string',
-            'duration_time' => 'required|date_format:H:i',
-            'status' => 'nullable|boolean',
-            'total_mark' => 'required|integer',
-            'pass_mark' => 'required|integer',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'phone' => 'nullable|string',
+            'exam_setup_id' => 'required|integer',
         ];
     }
 }

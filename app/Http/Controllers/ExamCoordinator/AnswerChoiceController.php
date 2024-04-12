@@ -68,7 +68,10 @@ class AnswerChoiceController extends Controller
 
         toastr()->success("Option added Successfully");
 
-        return redirect()->back()->withInput();
+        // return redirect()->back()->withInput();
+        return redirect()->back()->withInput()->with('active_question', $request->question_id);
+
+        // return redirect()->back()->withInput(['activeQuestionId' => $request->question_id]);
     }
 
     /**

@@ -42,8 +42,7 @@ class ExamManagementController extends Controller
         $examSetup->exam_coordinator_id = $examCoordinatorId;
         $examSetup->exam_title = $request->exam_title;
         $examSetup->exam_type = $request->exam_type;
-        $examSetup->date = $request->date;
-        $examSetup->time = $request->time;
+        $examSetup->duration_time = $request->duration_time;
         $examSetup->total_mark = $request->total_mark;
         $examSetup->pass_mark = $request->pass_mark;
         $examSetup->save();
