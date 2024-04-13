@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\ExamCoordinator\AnswerChoiceController;
 use App\Http\Controllers\ExamCoordinator\ExamCoordinatorController;
+use App\Http\Controllers\ExamCoordinator\ExamManagementController;
+use App\Http\Controllers\ExamCoordinator\QuestionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\StudentController;
+use App\Http\Controllers\ExamCoordinator\StudentController as StudentC;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +45,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:examCoordinator'])->group(function () {
     // Routes accessible to users with the 'admin' role
     Route::get('examCoordinator/dashboard', [ExamCoordinatorController::class, 'dashboard'])->name('examCoordinator.dashboard');
+    Route::resource('examManagement', ExamManagementController::class);
+    Route::resource('questionManagement', QuestionController::class);
+    Route::resource('answerChoiceManagement', AnswerChoiceController::class);
+    Route::resource('studentManagement', StudentC::class);
 });
 
 // student
