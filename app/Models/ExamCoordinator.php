@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ExamCoordinator extends Model
 {
     use HasFactory;
+    protected $table = 'exam_coordinators';
 
     protected $fillable = [
         'first_name',
