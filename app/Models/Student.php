@@ -22,4 +22,9 @@ class Student extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function examSetup()
+    {
+        return $this->belongsToMany(ExamSetup::class);
+    }
 }
