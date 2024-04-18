@@ -11,6 +11,10 @@ use App\Http\Controllers\ExamCoordinator\StudentController as StudentC;
 use App\Http\Controllers\Student\TakenExamController;
 use App\Http\Controllers\Student\UpcomingExamController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\College\CollegeController;
+use App\Http\Controllers\Department\DepartmentController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +35,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 // admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -65,5 +69,22 @@ Route::middleware(['auth', 'role:student'])->group(function () {
 
     //
 });
+
+//Route::middleware(['auth', 'role:admin'])->group(function(){
+    // Routes accessble to users with admin role
+    //Route::get('admin/college/form', [CollegeController::class, 'addCollege'])->name('collegeForm');
+//});
+Route::get('admin/college/form', [CollegeController::class, 'collegeForm'])->name('collegeForm');
+Route::post('admin/college/save', [CollegeController::class, 'storeCollege'])->name('storeCollege');
+Route::get('admin/college/list', [CollegeController::class, 'collegeList'])->name('collegeList');
+
+Route::get('admin/department/form', [DepartmentController::class, 'departmentForm'])->name('departmentForm');
+Route::post('admin/department/save', [DepartmentController::class, 'storeDepartment'])->name('storeDepartment');
+
+
+Route::get('admin/coordinator/form', [ExamCoordinatorController::class, 'coordinatorForm'])->name('coordinatorForm');
+Route::post('admin/department/save', [ExamCoordinatorController::class, 'storeCoordinator'])->name('storeCoordinator');
+
+
 
 require __DIR__ . '/auth.php';
