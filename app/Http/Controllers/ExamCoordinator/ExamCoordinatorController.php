@@ -1,15 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\ExamCoordinator;
+
 use App\Http\Requests\Admin\ExamCoordinatorRequest;
 use App\Http\Controllers\Controller;
 use App\Mail\ExamCoordinatorMail;
 use App\Models\ExamCoordinator;
 use App\Models\User;
 use App\Models\ExamSetup;
+use App\Models\Question;
+use App\Models\Student;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
@@ -20,13 +24,33 @@ class ExamCoordinatorController extends Controller
     public function dashboard()
     {
 
-        $examCoordinatorId = Auth::id();
-        $examSetupsCount = ExamSetup::where('exam_coordinator_id', $examCoordinatorId)->count();
 
 
-        return view('examCoordinator.dashboard.index', compact('examSetupsCount'));
+        $user = Auth::user(); // Assuming you're using Laravel's built-in authentication
+        $examCoordinator = $user->examCoordinator;
+
+        $examSetupsCount = ExamSetup::where('exam_coordinator_id', $user->id)->count();
+
+        $examSetups = ExamSetup::where('exam_coordinator_id', $user->id)->get();
+
+        $examSetups = ExamSetup::withCount('students', 'questions')->get();
+
+        $labels = $examSetups->pluck('exam_title')->toArray();
+        $studentData = $examSetups->pluck('students_count')->toArray();
+        $questionData = $examSetups->pluck('questions_count')->toArray();
+
+
+        $studentCount = $examSetups->sum(function ($examSetup) {
+            return $examSetup->students->count();
+        });
+        $questionCount = $examSetups->sum(function ($examSetup) {
+            return $examSetup->questions->count();
+        });
+
+        return view('examCoordinator.dashboard.index', compact('examSetupsCount', 'studentCount', 'questionCount', 'labels', 'studentData', 'questionData'));
     }
-    public function coordinatorForm(){
+    public function coordinatorForm()
+    {
         return view('admin.examCoordinator.examCoordinatorForm');
     }
 
