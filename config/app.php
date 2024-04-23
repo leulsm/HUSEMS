@@ -154,7 +154,10 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-
+    'providers' => [
+        // Other providers...
+        Brian2694\Toastr\ToastrServiceProvider::class,
+    ],
     'providers' => ServiceProvider::defaultProviders()->merge([
         /*
          * Package Service Providers...

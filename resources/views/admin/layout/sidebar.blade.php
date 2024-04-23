@@ -45,9 +45,21 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
 
-            <li class="active"><a class="nav-link" href="#"><i class="fas fa-fire"></i><span>General
+            <li class="active"><a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="fas fa-fire"></i><span>General
                         Dashboard</span></a>
             </li>
+
+
+            <li class="menu-header">User Management</li>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Add User</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{{ route('collegeForm') }}">Add College</a></li>
+                <li><a class="nav-link" href="{{route('departmentForm')}}">Add Department</a></li>
+                <li><a class="nav-link" href="{{route('coordinatorForm')}}">Add Exam Coordinator</a></li>
+              </ul>
+            </li>
+
 
             {{-- <li class="menu-header">Starter</li>
 
