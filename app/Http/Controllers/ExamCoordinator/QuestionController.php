@@ -39,7 +39,25 @@ class QuestionController extends Controller
      */
     public function store(QuestionRequest $request)
     {
+        $examSetupId = $request->exam_setup_id;
+        $examSetup = ExamSetup::findOrFail($examSetupId);
+
+        // Get the total mark of the exam setup
+        $totalMark = $examSetup->total_mark;
+
+        // Get the sum of the marks of existing questions for the exam setup
+        $existingTotalMark = Question::where('exam_setup_id', $examSetupId)->sum('mark');
+
+        $newQuestionMark = $request->mark;
+
+        if (($existingTotalMark + $newQuestionMark) > $totalMark) {
+            // If the total mark exceeds the specified total mark of the exam setup,
+            // you can handle the error or display a message to the user.
+            toastr()->error("The total mark of the questions exceeds the total mark of the exam setup.");
+            return redirect()->back();
+        }
         //
+
         $question = new Question();
 
         $question->question_type = $request->question_type;

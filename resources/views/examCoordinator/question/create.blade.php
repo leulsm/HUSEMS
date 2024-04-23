@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group">
                         <label>Question Mark</label>
-                        <input type="number" class="form-control" name="mark" required>
+                        <input type="number" class="form-control" name="mark" min="1" required>
                     </div>
                     <button class="btn btn-primary" type="submit">Save</button>
 

@@ -44,46 +44,77 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
-        //
-        // Create a random password
-        $password = str::random(8);
+        $user = User::where('email', $request->email)->first();
+        // dd($user);
+        if ($user) {
+            // $password = str::random(8);
 
-        // Create a new User instance
-        $user = new User();
-        $user->name = $request->first_name . ' ' . $request->last_name;
-        $user->email = $request->email;
-        $user->password = bcrypt($password); // Hash the password
-        $user->save();
+            $student = new Student();
+            $student->user_id = $user->id;
+            $student->first_name = $request->first_name;
+            $student->last_name = $request->last_name;
+            $student->email = $request->email;
+            $student->phone = $request->phone;
+            $student->exam_setup_id = $request->exam_setup_id;
+            $student->save();
 
-        // Assign a role to the user
-        $role = Role::findByName('student'); // Replace 'examCoordinator' with the desired role name
-        $user->assignRole($role);
+            // Retrieve the exam title
+            $examSetup = ExamSetup::find($request->exam_setup_id);
+            $examTitle = $examSetup->exam_title;
 
-        // Create a new Student instance
-        $student = new Student();
-        $student->user_id = $user->id;
-        $student->first_name = $request->first_name;
-        $student->last_name = $request->last_name;
-        $student->email = $request->email;
-        $student->phone = $request->phone;
-        $student->exam_setup_id = $request->exam_setup_id;
-        $student->save();
+            $data = [
+                'username' => $request->email,
+                'password' => "Use your previous password.",
+                'exam_title' => $examTitle
+            ];
 
-        // Retrieve the exam title
-        $examSetup = ExamSetup::find($request->exam_setup_id);
-        $examTitle = $examSetup->exam_title;
+            Mail::to($request->email)->send(new StudentMail($data));
 
-        $data = [
-            'username' => $request->email,
-            'password' => $password,
-            'exam_title' => $examTitle
-        ];
+            toastr()->success("Student added Successfully");
 
-        Mail::to($request->email)->send(new StudentMail($data));
+            return back();
+        } else {
+            //
+            // Create a random password
+            $password = str::random(8);
 
-        toastr()->success("Student added Successfully");
+            // Create a new User instance
+            $user = new User();
+            $user->name = $request->first_name . ' ' . $request->last_name;
+            $user->email = $request->email;
+            $user->password = bcrypt($password); // Hash the password
+            $user->save();
 
-        return back();
+            // Assign a role to the user
+            $role = Role::findByName('student'); // Replace 'examCoordinator' with the desired role name
+            $user->assignRole($role);
+
+            // Create a new Student instance
+            $student = new Student();
+            $student->user_id = $user->id;
+            $student->first_name = $request->first_name;
+            $student->last_name = $request->last_name;
+            $student->email = $request->email;
+            $student->phone = $request->phone;
+            $student->exam_setup_id = $request->exam_setup_id;
+            $student->save();
+
+            // Retrieve the exam title
+            $examSetup = ExamSetup::find($request->exam_setup_id);
+            $examTitle = $examSetup->exam_title;
+
+            $data = [
+                'username' => $request->email,
+                'password' => $password,
+                'exam_title' => $examTitle
+            ];
+
+            Mail::to($request->email)->send(new StudentMail($data));
+
+            toastr()->success("Student added Successfully");
+
+            return back();
+        }
     }
 
     /**

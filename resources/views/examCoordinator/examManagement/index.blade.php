@@ -110,8 +110,8 @@
                     const selectedTime = instance.parseDate(dateStr, "H:i");
                     const selectedMinutes = selectedTime.getMinutes();
 
-                    if (selectedMinutes < 30) {
-                        selectedTime.setMinutes(30);
+                    if (selectedMinutes < 5) {
+                        selectedTime.setMinutes(5);
                         instance.setDate(selectedTime);
                     }
                 }
