@@ -5,8 +5,8 @@
         <div class="section-header">
             <h1>Exam Setup</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item "><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item">ExamSetup</div>
+                <div class="breadcrumb-item "><a href="{{ route('examCoordinator.dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{ route('examManagement.index') }}">Exam Setup</a></div>
                 <div class="breadcrumb-item active">Detail</div>
             </div>
         </div>
@@ -37,8 +37,8 @@
                                 <div class="col-md-6">
                                     <address>
                                         <strong>Created By:</strong><br>
-                                        Visa ending **** 4242<br>
-                                        ujang@maman.com
+                                        leulsolm7@gmail.com<br>
+
                                     </address>
                                 </div>
                                 <div class="col-md-6 text-md-right">
@@ -54,31 +54,35 @@
 
                 </div>
                 <hr>
-                <div class="text-md-right">
-                    <div class="float-lg-left mb-lg-0 mb-3">
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="{{ route('examManagement.edit', $examSetup->id) }}"
-                                    class="btn btn-primary btn-icon icon-left text-white"><i class="fas fa-edit"></i>Edit
-                                    Exam
-                                    Setup</a>
+                @if ($examSetup->status == 0)
+                    <div class="text-md-right">
+                        <div class="float-lg-left mb-lg-0 mb-3">
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="{{ route('examManagement.edit', $examSetup->id) }}"
+                                        class="btn btn-primary btn-icon icon-left text-white"><i
+                                            class="fas fa-edit"></i>Edit
+                                        Exam
+                                        Setup</a>
+                                </div>
+                                <div class="col-6">
+                                    <form method="POST" action="{{ route('examManagement.destroy', $examSetup->id) }}"
+                                        onsubmit="return confirm('Are you sure you want to delete this exam setup?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-icon">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <form method="POST" action="{{ route('examManagement.destroy', $examSetup->id) }}"
-                                    onsubmit="return confirm('Are you sure you want to delete this exam setup?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-icon">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </button>
-                                </form>
-                            </div>
+
+
+
                         </div>
-
-
-
                     </div>
-                </div>
+                @endif
+
             </div>
         </div>
 

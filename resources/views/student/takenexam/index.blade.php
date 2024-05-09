@@ -4,6 +4,11 @@
     <section class="section">
         <div class="section-header">
             <h1>Taken Exam</h1>
+
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="{{ route('student.dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item">Exam Taken</div>
+            </div>
         </div>
 
         <div class="row">
@@ -51,10 +56,10 @@
                                         </div>
                                     </div>
 
-                                    <a href="" class="">
+                                    <a href="{{ route('student.takenexam.show', $examSetup->id) }}" class="">
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="mx-auto my-3 add-question">View Detail</div>
+                                                <div class="text-center my-3 add-question">View Detail</div>
                                             </div>
                                         </div>
                                     </a>

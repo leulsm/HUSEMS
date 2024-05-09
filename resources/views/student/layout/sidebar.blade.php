@@ -16,7 +16,7 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
+                {{-- <div class="dropdown-title">Logged in 5 min ago</div> --}}
                 <a href="" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
@@ -48,13 +48,15 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="active"><a class="nav-link" href="{{ route('student.dashboard') }}"><i
-                        class="fas fa-fire"></i><span>
+                        class="ml-3 fa-solid fa-table-columns"></i><span>
                         Dashboard</span></a>
             </li>
-            <li><a class="nav-link" href="{{ route('student.upcomingexam.index') }}"><i class="fas fa-pen"></i>
+            <li><a class="nav-link" href="{{ route('student.upcomingexam.index') }}"><i
+                        class="ml-3 fa-solid fa-hourglass-start"></i>
                     <span>Upcoming Exam</span></a>
             </li>
-            <li><a class="nav-link" href="{{ route('student.takenexam.index') }}"><i class="fas fa-pen"></i>
+            <li><a class="nav-link" href="{{ route('student.takenexam.index') }}"><i
+                        class="ml-3 fa-solid fa-sheet-plastic"></i>
                     <span>Taken Exam</span></a>
             </li>
 

@@ -69,8 +69,6 @@
                     <span>Student Management</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('studentManagement.index') }}">Add Student</a></li>
-
-
                 </ul>
             </li>
         </ul>

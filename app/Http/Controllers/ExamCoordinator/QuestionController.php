@@ -31,7 +31,8 @@ class QuestionController extends Controller
     {
         //
         $examSetupId = $request->query('examSetupId');
-        return view('examCoordinator.question.create', compact('examSetupId'));
+        $questions = Question::where('exam_setup_id', $examSetupId)->orderBy('updated_at', 'desc')->get();
+        return view('examCoordinator.question.create', compact('examSetupId', 'questions'));
     }
 
     /**

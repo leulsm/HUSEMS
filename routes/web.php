@@ -31,9 +31,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -67,6 +67,7 @@ Route::middleware(['auth', 'role:student'])->group(function () {
     Route::get('student/upcomingexam/submit', [UpcomingExamController::class, 'submit'])->name('student.upcomingexam.submit');
 
     Route::get('student/takenexam/index', [TakenExamController::class, 'index'])->name('student.takenexam.index');
+    Route::get('student/takenexam/show/{id}', [TakenExamController::class, 'show'])->name('student.takenexam.show');
 
     //
 });
