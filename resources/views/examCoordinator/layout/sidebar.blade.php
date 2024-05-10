@@ -16,7 +16,7 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
+                {{-- <div class="dropdown-title">Logged in 5 min ago</div> --}}
                 <a href="" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
@@ -69,8 +69,6 @@
                     <span>Student Management</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('studentManagement.index') }}">Add Student</a></li>
-
-
                 </ul>
             </li>
         </ul>

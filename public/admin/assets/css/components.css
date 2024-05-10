@@ -476,6 +476,11 @@ div.dataTables_wrapper div.dataTables_processing {
     min-height: 50px;
     text-align: center;
 }
+.dropzone1 {
+    border: 2px dashed #6777ef;
+    text-align: center;
+    height: 50px;
+}
 .dropzone .dz-message {
     font-size: 24px;
     color: #34395e;

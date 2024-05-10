@@ -31,9 +31,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -64,15 +64,17 @@ Route::middleware(['auth', 'role:student'])->group(function () {
     Route::get('student/upcomingexam/index', [UpcomingExamController::class, 'index'])->name('student.upcomingexam.index');
     Route::get('student/upcomingexam/create', [UpcomingExamController::class, 'create'])->name('student.upcomingexam.create');
     Route::post('student/upcomingexam/store', [UpcomingExamController::class, 'store'])->name('student.upcomingexam.store');
+    Route::get('student/upcomingexam/submit', [UpcomingExamController::class, 'submit'])->name('student.upcomingexam.submit');
 
     Route::get('student/takenexam/index', [TakenExamController::class, 'index'])->name('student.takenexam.index');
+    Route::get('student/takenexam/show/{id}', [TakenExamController::class, 'show'])->name('student.takenexam.show');
 
     //
 });
 
 //Route::middleware(['auth', 'role:admin'])->group(function(){
-    // Routes accessble to users with admin role
-    //Route::get('admin/college/form', [CollegeController::class, 'addCollege'])->name('collegeForm');
+// Routes accessble to users with admin role
+//Route::get('admin/college/form', [CollegeController::class, 'addCollege'])->name('collegeForm');
 //});
 Route::get('admin/college/form', [CollegeController::class, 'collegeForm'])->name('collegeForm');
 Route::post('admin/college/save', [CollegeController::class, 'storeCollege'])->name('storeCollege');

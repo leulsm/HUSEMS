@@ -37,10 +37,29 @@
             <div class="col-12 col-md-6 col-lg-6">
 
                 Students List
+
+                <div class="card ">
+                    <div class="card-body" id="top-5-scroll">
+                        <ul class="list-unstyled list-unstyled-border">
+                            @foreach ($students as $student)
+                                <li class="media">
+                                    <div class="media-body">
+                                        <div class="media-title">{{ $student->first_name }} {{ $student->last_name }}</div>
+                                        <div class="mt-1">
+                                            {{ $student->email }}
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <a href="" class="btn btn-primary px2"><i class="fas fa-edit"></i></a>
+                                        <a href="" class="btn btn-secondary"><i class="fas fa-eye"></i></a>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
-
         </div>
-
         </div>
     </section>
 @endsection

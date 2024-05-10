@@ -47,6 +47,7 @@ class AnswerChoiceController extends Controller
             ->get();
 
         // $examSetup = ExamSetup::find($examSetupId);
+        session(['active_question' => $request->query('active_question')]);
 
         return view('examCoordinator.answerChoice.create', compact('examSetup', 'questions'));
     }
@@ -58,6 +59,17 @@ class AnswerChoiceController extends Controller
     {
         //
         // dd($request);
+
+        $existingCorrectAnswer = AnswerOption::where('question_id', $request->question_id)
+            ->where('is_correct', true)
+            ->exists();
+
+        if ($existingCorrectAnswer && $request->is_correct) {
+            // If there is already a correct answer and the submitted option is also correct,
+            // you can handle the error or display a message to the user.
+            toastr()->error("The question already has a correct answer option.");
+            return redirect()->back()->withInput()->with('active_question', $request->question_id);
+        }
 
         $answerOption = new AnswerOption();
         $answerOption->option_text = $request->option_text;

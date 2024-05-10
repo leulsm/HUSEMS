@@ -66,18 +66,20 @@
                 <section class="section">
                     <div class="section-header">
                         <h1>Exam</h1>
+                        <div class="section-header-breadcrumb">
+                            <div class="breadcrumb-item active">
+                                <p>Time: <span id="current-time"></span></p>
+                            </div>
+                        </div>
                     </div>
                 </section>
                 <div class="row mt-5">
                     <div class="col-12 col-sm-7 col-lg-7">
-
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-4">
                                 <h3>Questions</h3>
-
                                 <div class="question-list-container" style="height: 400px; overflow-y: auto;">
                                     <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
-
                                         @foreach ($questions as $key => $question)
                                             <li class="nav-item">
                                                 <a class="nav-link{{ $question->id == session('active_question') || ($key == 0 && !session('active_question')) ? ' active' : '' }}"
@@ -92,13 +94,9 @@
                                     </ul>
                                 </div>
                             </div>
-
-
                             <div class="col-12 col-sm-12 col-md-8">
                                 <h3>_______//_________</h3>
-
                                 <div class="tab-content no-padding" id="myTab2Content">
-
                                     @foreach ($questions as $key => $question)
                                         <div class="tab-pane fade{{ $question->id == session('active_question') || ($key == 0 && !session('active_question')) ? ' show active' : '' }}"
                                             id="question{{ $key }}" role="tabpanel"
@@ -132,17 +130,9 @@
                                                         </div>
                                                     @endforeach
                                                 </div>
-                                                {{-- <div class="row">
-                                                    <div class="col-4">
-                                                        <button class="btn btn-primary mt-3" type="submit">Save &
-                                                            Continue</button>
-                                                    </div>
-                                                </div> --}}
-
                                                 <div class="row">
                                                     <div class="col-4">
                                                         @if ($loop->last)
-                                                            {{-- Check if it's the last question --}}
                                                             <a class="btn btn-primary mt-3"
                                                                 href="{{ route('student.takenexam.index') }}">Finish</a>
                                                         @else
@@ -189,24 +179,63 @@
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
     <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
-    {{-- <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.min.css') }}"> --}}
 
     <!-- General JS Scripts -->
     <script src="{{ asset('admin/assets/modules/moment.min.js') }}"></script>
 
     <!-- JS Libraies -->
-    {{-- <script src="{{ asset('admin/assets/modules/cleave-js/dist/cleave.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/modules/cleave-js/dist/addons/cleave-phone.us.js') }}"></script> --}}
     <script src="{{ asset('admin/assets/modules/jquery-pwstrength/jquery.pwstrength.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-    {{-- <script src="{{ asset('admin/assets/modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}"></script> --}}
     <script src="{{ asset('admin/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
-    {{-- <script src="{{ asset('admin/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script> --}}
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('admin/assets/js/page/forms-advanced-forms.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var examEndTime = localStorage.getItem('examEndTime');
+
+            if (examEndTime) {
+                startTimer(new Date(examEndTime));
+            } else {
+                var examEndTime = "{{ session('exam_end_time') }}";
+
+                localStorage.setItem('examEndTime', examEndTime);
+                startTimer(new Date(examEndTime));
+            }
+
+            function startTimer(endTime) {
+                function updateTime() {
+                    var now = new Date();
+                    var timeDifference = Math.max(endTime.getTime() - now.getTime(),
+                        0);
+                    if (timeDifference <= 0) {
+                        $("#current-time").text("Exam Ended");
+                        localStorage.removeItem('examEndTime');
+                        window.location.href =
+                            "{{ route('student.upcomingexam.submit', ['examSetupId' => $examSetup->id]) }}";
+                    } else {
+                        var hours = Math.floor(timeDifference / (1000 * 60 * 60));
+                        var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+                        // Add leading zeros if necessary
+                        hours = hours < 10 ? "0" + hours : hours;
+                        minutes = minutes < 10 ? "0" + minutes : minutes;
+                        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                        var formattedTime = hours + ":" + minutes + ":" + seconds;
+
+                        // Update the current time display
+                        $("#current-time").text(formattedTime);
+                    }
+                }
+                setInterval(updateTime, 1000);
+            }
+        });
+    </script>
 
     <script>
         toastr.options.progressBar = true;

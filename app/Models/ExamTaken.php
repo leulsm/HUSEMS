@@ -11,7 +11,8 @@ class ExamTaken extends Model
 
     protected $fillable = [
         'student_id',
-        'answer_option_id'
+        'answer_option_id',
+        'question_id'
     ];
 
     public function student()

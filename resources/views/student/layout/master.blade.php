@@ -51,7 +51,7 @@
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2024 <div class="bullet"></div> Design By <a href="">Mafia's</a>
+                    Copyright &copy; 2024 <div class="bullet"></div> Developed By <a href="">Mafia's</a>
                 </div>
                 <div class="footer-right">
 
@@ -89,7 +89,7 @@
     <script src="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     {{-- <script src="{{ asset('admin/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script> --}}
-
+    <script src="https://kit.fontawesome.com/67ef4e65d8.js" crossorigin="anonymous"></script>
     <!-- Page Specific JS File -->
     <script src="{{ asset('admin/assets/js/page/forms-advanced-forms.js') }}"></script>
 
