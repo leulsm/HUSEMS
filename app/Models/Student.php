@@ -14,7 +14,8 @@ class Student extends Model
         'last_name',
         'email',
         'phone',
-        'exam_setup_id'
+        'exam_setup_id',
+        'status'
 
     ];
 

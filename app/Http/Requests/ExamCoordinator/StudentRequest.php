@@ -27,8 +27,14 @@ class StudentRequest extends FormRequest
             //
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
-            'phone' => 'nullable|string',
+            // 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
+            // 'phone' => 'nullable|string',
+            'phone' => [
+                'nullable',
+                'string',
+                'regex:/^(?:\+251|09)[0-9]{9}$/'
+            ],
             'exam_setup_id' => 'required|integer',
         ];
     }

@@ -4,6 +4,12 @@
     <section class="section">
         <div class="section-header">
             <h1>Questions</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="{{ route('examCoordinator.dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item active"><a href="{{ route('answerChoiceManagement.index') }}">Exam Setups</a>
+                </div>
+                <div class="breadcrumb-item">Add Answer</div>
+            </div>
         </div>
         <h2>Exam Setup Details</h2>
         <div class="row">

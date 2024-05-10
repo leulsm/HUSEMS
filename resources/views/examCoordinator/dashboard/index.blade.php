@@ -31,7 +31,7 @@
                             <h4>Total Questions</h4>
                         </div>
                         <div class="card-body">
-                            42
+                            {{ $questionCount }}
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                             <h4>Total Students</h4>
                         </div>
                         <div class="card-body">
-                            1,201
+                            {{ $studentCount }}
                         </div>
                     </div>
                 </div>
@@ -58,15 +58,16 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Online Users</h4>
+                            <h4>Completed Exam</h4>
                         </div>
                         <div class="card-body">
-                            47
+                            2
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @include('examCoordinator.dashboard.chart');
 
     </section>
 @endsection
