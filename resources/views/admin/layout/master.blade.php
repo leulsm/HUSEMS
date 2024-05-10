@@ -5,21 +5,30 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>HUSEMS</title>
-
-    <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/fontawesome/css/all.min.css') }}">
 
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('admin/assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.min.css') }}">
     <link rel="stylesheet"
         href="{{ asset('admin/assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css') }}">
-
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
     <!-- Start GA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    <!-- Start GA -->
+
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -55,7 +64,7 @@
         </div>
     </div>
 
-    <!-- General JS Scripts -->
+    <!-- General JS Scripts
     <script src="{{ asset('admin/assets/modules/jquery.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/popper.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/tooltip.js') }}"></script>
@@ -63,10 +72,46 @@
     <script src="{{ asset('admin/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
     <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  Template JS File -->
+    <!-- <script src="{{ asset('admin/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+
+    <script src="{{ asset('admin/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+
+    <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/custom.js') }}"></script> -->
+
+    <!-- General JS Scripts -->
+    <script src="{{ asset('admin/assets/modules/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/popper.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/tooltip.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+
+    <script src="{{ asset('admin/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
+    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <!-- Template JS File -->
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
+    {{-- <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.min.css') }}"> --}}
 
+    <!-- General JS Scripts -->
+    <script src="{{ asset('admin/assets/modules/moment.min.js') }}"></script>
+
+    <!-- JS Libraies -->
+    {{-- <script src="{{ asset('admin/assets/modules/cleave-js/dist/cleave.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/cleave-js/dist/addons/cleave-phone.us.js') }}"></script> --}}
+    <script src="{{ asset('admin/assets/modules/jquery-pwstrength/jquery.pwstrength.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    {{-- <script src="{{ asset('admin/assets/modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}"></script> --}}
+    <script src="{{ asset('admin/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
+    {{-- <script src="{{ asset('admin/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script> --}}
+
+    <!-- Page Specific JS File -->
+    <script src="{{ asset('admin/assets/js/page/forms-advanced-forms.js') }}"></script>
     @stack('scripts')
 
 </body>

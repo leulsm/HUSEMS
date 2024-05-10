@@ -13,6 +13,7 @@ use App\Http\Controllers\Student\UpcomingExamController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\College\CollegeController;
 use App\Http\Controllers\Department\DepartmentController;
+use App\Http\Controllers\Schedule\ScheduleController;
 
 
 
@@ -84,6 +85,13 @@ Route::post('admin/department/save', [DepartmentController::class, 'storeDepartm
 
 Route::get('admin/coordinator/form', [ExamCoordinatorController::class, 'coordinatorForm'])->name('coordinatorForm');
 Route::post('admin/department/save', [ExamCoordinatorController::class, 'storeCoordinator'])->name('storeCoordinator');
+
+
+Route::get('admin/Schedule/home', [ScheduleController::class, 'examList'])->name('examList');
+Route::get('admin/Schedule/create/{examSetupId}', [ScheduleController::class, 'showExamSetup'])->name('createSchedule');
+Route::post('admin/Schedule/create', [ScheduleController::class, 'setSchedule'])->name('setSchedule');
+//Route::post('/exam-setups/{examSetupId}', 'ScheduleController@showExamSetup')->name('createSchedule');
+
 
 
 
