@@ -59,7 +59,9 @@
                 <li><a class="nav-link" href="{{route('coordinatorForm')}}">Add Exam Coordinator</a></li>
               </ul>
             </li>
-
+            <li class="main-header"><a class="nav-link">Schedule For Exam </a></li>
+            <li class="active"><a class="nav-link" href="{{ route('examList') }}"><i class="fas fa-fire"></i><span>Schedule For Exam</span></a>
+            </li>
 
             {{-- <li class="menu-header">Starter</li>
 

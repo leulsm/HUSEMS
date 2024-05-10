@@ -8,18 +8,40 @@ use App\Models\ExamSetup;
 use App\Models\ExamTaken;
 use App\Models\Question;
 use App\Models\Student;
+
+use App\Models\Schedule;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
 
 class UpcomingExamController extends Controller
 {
     //
     public function index()
     {
-
+// <<<<<<< scheduler
         $user = Auth::user(); // Assuming you're using Laravel's built-in authentication
+
+    $student = Student::where('user_id', $user->id)->first(); // Retrieve the student based on the user_id
+
+    $examSetup = ExamSetup::find($student->exam_setup_id); // Retrieve the assigned exam setup
+
+    $schedule = Schedule::where('exam_setup_id', $student->exam_setup_id)->first(); // Retrieve the schedule using exam_setup_id
+
+    $timeRemainingToStart = null;
+
+    if ($schedule) {
+        $startingDatetimeDb = Carbon::parse($schedule->starting_datetime);
+        $startingDatetime = substr($startingDatetimeDb, 0, -3);
+        $currentTime = Carbon::now()->timezone('Africa/Nairobi'); // Assuming East Africa Time
+        $scheduledTime = Carbon::parse($startingDatetime); // Assuming East Africa Time
+        $timeRemainingToStart = $currentTime->diffInSeconds($scheduledTime)-10710;
+        // Format the remaining time
+// =======
+
+//         $user = Auth::user(); // Assuming you're using Laravel's built-in authentication
 
         // $student = Student::where('user_id', $user->id)
         //     ->whereIn('status', ['Active', 'Pending'])
@@ -41,13 +63,27 @@ class UpcomingExamController extends Controller
         // })
         //     ->where('status', ['Active', 'Pending'])
         //     ->get();
-        $examSetups = ExamSetup::whereHas('students', function ($query) use ($user) {
+//         $examSetups = ExamSetup::whereHas('students', function ($query) use ($user) {
+//             $query->where('user_id', $user->id)
+//                 ->whereIn('status', ['Active', 'Pending']);
+//         })
+//             ->get();
+//         return view('student.upcomingexam.index', compact('examSetups'));
+// >>>>>>> dev
+    }
+       $examSetups = ExamSetup::whereHas('students', function ($query) use ($user) {
             $query->where('user_id', $user->id)
                 ->whereIn('status', ['Active', 'Pending']);
         })
             ->get();
-        return view('student.upcomingexam.index', compact('examSetups'));
+
+    return view('student.upcomingexam.index', compact('examSetup', 'timeRemainingToStart','examSetups'));
+
+
     }
+
+
+
 
     public function create(Request $request)
     {
