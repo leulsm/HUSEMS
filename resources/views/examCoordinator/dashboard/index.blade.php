@@ -61,7 +61,7 @@
                             <h4>Completed Exam</h4>
                         </div>
                         <div class="card-body">
-                            47
+                            2
                         </div>
                     </div>
                 </div>

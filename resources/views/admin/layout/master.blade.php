@@ -46,7 +46,7 @@
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2024 <div class="bullet"></div> Design By <a href="">Mafia's</a>
+                    Copyright &copy; 2024 <div class="bullet"></div> Developed By <a href="">Mafia's</a>
                 </div>
                 <div class="footer-right">
 

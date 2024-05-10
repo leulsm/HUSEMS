@@ -36,7 +36,8 @@ class StudentController extends Controller
     {
         //
         $examSetupId = $request->query('examSetupId');
-        return view('examCoordinator.student.create', compact('examSetupId'));
+        $students = Student::where('exam_setup_id', $examSetupId)->orderBy('updated_at', 'desc')->get();
+        return view('examCoordinator.student.create', compact('examSetupId', 'students'));
     }
 
     /**

@@ -44,8 +44,8 @@
                         <ul class="list-unstyled list-unstyled-border">
                             @foreach ($questions as $question)
                                 <li class="media">
-                                    <img class="mr-3 rounded" width="55"
-                                        src="{{ asset('admin/assets/img/products/product-3-50.png') }}" alt="product">
+                                    {{-- <img class="mr-3 rounded" width="55"
+                                        src="{{ asset('admin/assets/img/products/product-3-50.png') }}" alt="product"> --}}
                                     <div class="media-body">
                                         <div class="media-title">{{ $question->question_text }}</div>
                                         <div class="mt-1">
@@ -60,7 +60,8 @@
                                             class="btn btn-secondary"><i class="fas fa-eye"></i></a>
                                     </div>
 
-                                    <a href="{{ route('answerChoiceManagement.create', ['examSetupId' => $examSetupId]) }}">
+                                    <a
+                                        href="{{ route('answerChoiceManagement.create', ['examSetupId' => $examSetupId, 'active_question' => $question->id]) }}">
                                         <form action="GET" class="dropzone1" id="mydropzone">
                                             <div class=" add-question"><i class="fas fa-plus px-2"></i></div>
                                             <p class="px-2">Answer Options</p>
