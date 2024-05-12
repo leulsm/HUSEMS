@@ -6,10 +6,14 @@
 </head>
 
 <body>
-    <h2>Welcome, {{ $username }}!</h2>
-    <h2>You are assigned to , {{ $exam_title }}!</h2>
+    <h2>Hello, {{ $fullname }}!</h2>
+
+    <h2>You are registered for the exam, {{ $exam_title }}!</h2>
     <br>
-    <p>Your password is: {{ $password }}</p>
+    <h3>Exam Start Day and Time {{ $date }},{{ $time }}</h3>
+    <hr>
+    <h4>Your password is: {{ $password }}</h4>
+    <h4>Please Use this link to get start: <a href="{{ $urllink }}">Click here</a></h4>
     <p>Please keep this information secure and do not share it with others.</p>
 </body>
 

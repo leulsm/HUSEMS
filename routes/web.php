@@ -29,7 +29,7 @@ use App\Http\Controllers\Schedule\ScheduleController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 // Route::get('/dashboard', function () {
@@ -56,6 +56,7 @@ Route::middleware(['auth', 'role:examCoordinator'])->group(function () {
     Route::resource('questionManagement', QuestionController::class);
     Route::resource('answerChoiceManagement', AnswerChoiceController::class);
     Route::resource('studentManagement', StudentC::class);
+    Route::post('examCoordinator/student/storebulk', [StudentC::class, 'storebulk'])->name('examCoordinator.student.storebulk');;
 });
 
 // student

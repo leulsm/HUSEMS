@@ -58,10 +58,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Completed Exam</h4>
+                            <h4>Taken Exam</h4>
                         </div>
                         <div class="card-body">
-                            2
+                            {{ $takenExamSetupsCount }}
                         </div>
                     </div>
                 </div>

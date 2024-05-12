@@ -95,6 +95,8 @@
     {{-- <script src="{{ asset('admin/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script> --}}
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> --}}
+    <script src="https://kit.fontawesome.com/67ef4e65d8.js" crossorigin="anonymous"></script>
+
     <!-- Page Specific JS File -->
     <script src="{{ asset('admin/assets/js/page/forms-advanced-forms.js') }}"></script>
 

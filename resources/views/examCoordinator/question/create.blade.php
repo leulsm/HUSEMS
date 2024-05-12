@@ -42,22 +42,22 @@
                 <div class="card ">
                     <div class="card-body" id="top-5-scroll">
                         <ul class="list-unstyled list-unstyled-border">
-                            @foreach ($questions as $question)
+                            @foreach ($questions as $index => $question)
                                 <li class="media">
                                     {{-- <img class="mr-3 rounded" width="55"
                                         src="{{ asset('admin/assets/img/products/product-3-50.png') }}" alt="product"> --}}
                                     <div class="media-body">
-                                        <div class="media-title">{{ $question->question_text }}</div>
+                                        <div class="media-title">Q{{ $index + 1 }}. {{ $question->question_text }}</div>
                                         <div class="mt-1">
 
                                             0 Answer Options
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <a href="{{ route('examManagement.edit', $question->id) }}"
+                                        <a href="{{ route('questionManagement.edit', $question->id) }}"
                                             class="btn btn-primary px2"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ route('examManagement.show', $question->id) }}"
-                                            class="btn btn-secondary"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('questionManagement.show', $question->id) }}"
+                                            class="btn btn-success"><i class="fas fa-eye"></i></a>
                                     </div>
 
                                     <a

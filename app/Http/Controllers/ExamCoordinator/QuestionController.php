@@ -79,6 +79,9 @@ class QuestionController extends Controller
     public function show(string $id)
     {
         //
+        $question = Question::findOrFail($id);
+
+        return view('examCoordinator.question.show', compact('question'));
     }
 
     /**
@@ -87,6 +90,9 @@ class QuestionController extends Controller
     public function edit(string $id)
     {
         //
+        $question = Question::findOrFail($id);
+
+        return view('examCoordinator.question.edit', compact('question'));
     }
 
     /**
@@ -95,6 +101,21 @@ class QuestionController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $question = Question::findOrFail($id);
+
+        // $examCoordinatorId = Auth::id();
+
+
+        $question->question_type = $request->question_type;
+        $question->question_text = $request->question_text;
+        $question->mark = $request->mark;
+
+        $question->save();
+
+
+        toastr()->success("Updated Successfully");
+
+        return redirect()->route('questionManagement.show', ['questionManagement' => $question->id]);
     }
 
     /**
@@ -103,5 +124,13 @@ class QuestionController extends Controller
     public function destroy(string $id)
     {
         //
+        $question = Question::findOrFail($id);
+        $examSetupId = $question->exam_setup_id;
+        // dd($examSetupId);
+        $question->delete();
+
+        // return redirect()->route('examManagement.index')->with('success', 'Exam setup deleted successfully.');
+        toastr()->success("Deleted Successfully");
+        return redirect()->route('questionManagement.create', ['examSetupId' => $examSetupId],);
     }
 }

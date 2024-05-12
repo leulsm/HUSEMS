@@ -59,44 +59,6 @@
                 <div class="card ">
                     <div class="card-body" id="top-5-scroll">
                         <ul class="list-unstyled list-unstyled-border">
-                            {{-- @foreach ($examSetups as $examSetup)
-                                <li class="media">
-                                    <img class="mr-3 rounded" width="55"
-                                        src="{{ asset('admin/assets/img/products/product-3-50.png') }}" alt="product">
-                                    <div class="media-body">
-                                        <div class="media-title">{{ $examSetup->exam_title }}</div>
-                                        <div class="mt-1">
-                                            <div class="budget-price">
-                                                <div class="budget-price-square bg-primary"
-                                                    data-width="{{ $examSetup->students->count() }}%"></div>
-                                                <div class="budget-price-label">{{ $examSetup->students->count() }} Students
-                                                </div>
-                                            </div>
-                                            <div class="budget-price">
-                                                <div class="budget-price-square bg-danger"
-                                                    data-width="{{ $examSetup->questions->count() }}%"></div>
-                                                <div class="budget-price-label">{{ $examSetup->questions->count() }}
-                                                    Questions</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <a href="{{ route('examManagement.edit', $examSetup->id) }}"
-                                            class="btn btn-primary px2"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ route('examManagement.show', $examSetup->id) }}"
-                                            class="btn btn-secondary"><i class="fas fa-eye"></i></a>
-                                    </div>
-
-                                    <a href="{{ route('questionManagement.create', ['examSetupId' => $examSetup->id]) }}">
-                                        <form action="GET" class="dropzone1" id="mydropzone">
-                                            <div class=" add-question"><i class="fas fa-plus px-2"></i></div>
-                                            <p class="px-2">Question</p>
-                                        </form>
-                                    </a>
-
-
-                                </li>
-                            @endforeach --}}
                             @foreach ($examSetups as $examSetup)
                                 <li class="media">
                                     <!-- Display exam setup details -->
@@ -128,9 +90,8 @@
                                                 class="btn btn-primary px2"><i class="fas fa-edit"></i></a>
                                         @endif
                                         <a href="{{ route('examManagement.show', $examSetup->id) }}"
-                                            class="btn btn-secondary"><i class="fas fa-eye"></i></a>
+                                            class="btn btn-success"><i class="fas fa-eye"></i></a>
                                     </div>
-
                                     <!-- Conditionally display add question button -->
                                     @if ($examSetup->status == 1)
                                         <!-- Display "taken" text and disable clickable links/buttons -->

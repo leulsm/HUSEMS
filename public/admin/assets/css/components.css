@@ -665,13 +665,13 @@ tr:first-child > td > .fc-day-grid-event {
 .image-preview,
 #callback-preview {
     width: 250px;
-    height: 250px;
+    height: 50px;
     border: 2px dashed #ddd;
     border-radius: 3px;
     position: relative;
     overflow: hidden;
     background-color: #ffffff;
-    color: #ecf0f1;
+    color: #000000;
 }
 
 .image-preview input,
@@ -689,7 +689,7 @@ tr:first-child > td > .fc-day-grid-event {
     z-index: 5;
     opacity: 0.8;
     cursor: pointer;
-    background-color: #bdc3c7;
+    background-color: transparent;
     width: 150px;
     height: 50px;
     font-size: 12px;

@@ -47,7 +47,7 @@ class AnswerChoiceController extends Controller
             ->get();
 
         // $examSetup = ExamSetup::find($examSetupId);
-        session(['active_question' => $request->query('active_question')]);
+        // session(['active_question' => $request->query('active_question')]);
 
         return view('examCoordinator.answerChoice.create', compact('examSetup', 'questions'));
     }

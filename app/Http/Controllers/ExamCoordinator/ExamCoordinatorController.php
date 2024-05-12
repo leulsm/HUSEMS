@@ -30,6 +30,9 @@ class ExamCoordinatorController extends Controller
         $examCoordinator = $user->examCoordinator;
 
         $examSetupsCount = ExamSetup::where('exam_coordinator_id', $user->id)->count();
+        $takenExamSetupsCount = ExamSetup::where('exam_coordinator_id', $user->id)
+            ->where('status', 1)
+            ->count();
 
         $examSetups = ExamSetup::where('exam_coordinator_id', $user->id)->get();
 
@@ -47,7 +50,7 @@ class ExamCoordinatorController extends Controller
             return $examSetup->questions->count();
         });
 
-        return view('examCoordinator.dashboard.index', compact('examSetupsCount', 'studentCount', 'questionCount', 'labels', 'studentData', 'questionData'));
+        return view('examCoordinator.dashboard.index', compact('examSetupsCount', 'studentCount', 'questionCount', 'labels', 'studentData', 'questionData', 'takenExamSetupsCount'));
     }
     public function coordinatorForm()
     {
