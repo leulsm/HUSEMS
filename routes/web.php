@@ -8,6 +8,7 @@ use App\Http\Controllers\ExamCoordinator\QuestionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\ExamCoordinator\StudentController as StudentC;
+use App\Http\Controllers\ExamCoordinator\ProfileController as ProfileC;
 use App\Http\Controllers\Student\TakenExamController;
 use App\Http\Controllers\Student\UpcomingExamController;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +57,7 @@ Route::middleware(['auth', 'role:examCoordinator'])->group(function () {
     Route::resource('questionManagement', QuestionController::class);
     Route::resource('answerChoiceManagement', AnswerChoiceController::class);
     Route::resource('studentManagement', StudentC::class);
+    Route::resource('profileManagement', ProfileC::class);
     Route::post('examCoordinator/student/storebulk', [StudentC::class, 'storebulk'])->name('examCoordinator.student.storebulk');;
 });
 

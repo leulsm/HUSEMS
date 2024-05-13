@@ -116,5 +116,15 @@ class AnswerChoiceController extends Controller
     public function destroy(string $id)
     {
         //
+        $answeroption = AnswerOption::findOrFail($id);
+        $question_id = $answeroption->question_id;
+
+        $answeroption->delete();
+
+        // return redirect()->route('examManagement.index')->with('success', 'Exam setup deleted successfully.');
+        toastr()->success("Deleted Successfully");
+        return redirect()->back()->withInput()->with('active_question', $question_id);
+
+        // return redirect()->route('studentManagement.create', ['examSetupId' => $examSetupid]);
     }
 }
