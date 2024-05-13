@@ -89,23 +89,7 @@
                                                 $alphabet = chr(65 + $key); // Convert index to corresponding alphabet (A, B, C, ...)
                                             @endphp
                                             <div class="col-sm-6">
-                                                {{-- <div class="d-flex">
-                                                    <div class="mr-2">{{ $alphabet }}.</div>
-                                                    <div>{{ $answerOption->option_text }}</div>
-                                                    <div style="background: rgb(111, 230, 111); padding:5cm;"
-                                                        class="pricing-item-icon">
-                                                        <i class="fas fa-check"></i>
-                                                    </div>
 
-                                                </div> --}}
-                                                {{-- <div class="d-flex text-center">
-                                                    <div class="mr-2">{{ $alphabet }}.</div>
-                                                    <div>{{ $answerOption->option_text }}</div>
-                                                    <div class="ml-2"
-                                                        style="width: 20px; height: 20px; border-radius: 50%; background-color: rgb(111, 230, 111); display: flex; justify-content: center; align-items: center;">
-                                                        <i class=" fas fa-check"></i>
-                                                    </div>
-                                                </div> --}}
                                                 <div class="d-flex">
                                                     <div class="mr-2">{{ $alphabet }}.</div>
                                                     <div>{{ $answerOption->option_text }}</div>
@@ -120,57 +104,58 @@
                                                             <i class="fas fa-times text-white"></i>
                                                         </div>
                                                     @endif
+                                                    <form method="POST"
+                                                        action="{{ route('answerChoiceManagement.destroy', $answerOption->id) }}"
+                                                        onsubmit="return confirm('Are you sure you want to delete this exam setup?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <a href="#" style="color:rgb(208, 98, 98);"
+                                                            onclick="event.preventDefault(); this.closest('form').submit();"
+                                                            class="text-red ml-2">
+                                                            <i class="fas fa-trash text-red"></i>
+                                                        </a>
+                                                    </form>
                                                 </div>
                                             </div>
-
-
-                                            {{-- <div class="pricing"> --}}
-
-                                            {{-- <div class="pricing-padding"> --}}
-
-                                            {{-- <div class="pricing-details">
-                                                    <div class="pricing-item">
-                                                        </div>
-                                                        <div class="pricing-item-label">1 user agent</div>
-                                                    </div>
-
-                                                </div> --}}
-                                            {{-- </div> --}}
-
-                                            {{-- </div> --}}
                                         @endforeach
                                     </div>
                                     <div class="row">
-                                        <form method="POST" action="{{ route('answerChoiceManagement.store') }}">
-                                            @csrf
-                                            <input type="hidden" name="question_id" value="{{ $question->id }}">
+                                        <div class="col-6">
+                                            <form method="POST" action="{{ route('answerChoiceManagement.store') }}">
+                                                @csrf
+                                                <input type="hidden" name="question_id" value="{{ $question->id }}">
 
-                                            <div class="form-group mr-5">
-                                                <label>Answer Title</label>
-                                                <input type="text" class="form-control" name="option_text" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="d-block">Is Correct</label>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="is_correct"
-                                                        id="exampleRadios1" value="1" checked>
-                                                    <label class="form-check-label" for="exampleRadios1">
-                                                        Yes
-                                                    </label>
+                                                <div class="form-group mr-5">
+                                                    <label>Answer Title</label>
+                                                    <input type="text" class="form-control" name="option_text" required>
                                                 </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="is_correct"
-                                                        id="exampleRadios2" value="0">
-                                                    <label class="form-check-label" for="exampleRadios2">
-                                                        No
-                                                    </label>
+                                                <div class="form-group">
+                                                    <label class="d-block">Is Correct</label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="is_correct"
+                                                            id="exampleRadios1" value="1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="is_correct"
+                                                            id="exampleRadios2" value="0">
+                                                        <label class="form-check-label" for="exampleRadios2">
+                                                            No
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                <button class="btn btn-primary" type="submit">Add Answer</button>
+
+                                            </form>
+                                        </div>
+                                        {{--  --}}
+
+
                                     </div>
-                                    <button class="btn btn-primary" type="submit">Add Answer</button>
 
 
-                                    </form>
 
                                 </div>
                             @endforeach

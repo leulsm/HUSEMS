@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ExamCoordinator;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExamCoordinator\StudentRequest;
+use App\Imports\StudentImport;
 use App\Mail\StudentMail;
 use App\Models\ExamSetup;
 use App\Models\Student;
@@ -139,9 +140,10 @@ class StudentController extends Controller
         //     'bulk_data' => 'required|file|mimes:csv', // Validate the uploaded file
         // ]);
 
+        // Excel::import(new StudentImport, $request->bulk_file);
 
         $file = $request->file('bulk_data'); // Get the uploaded file
-        dd($file);
+        // dd($file);
 
         // Process the CSV file
         $csvData = array_map('str_getcsv', file($file));

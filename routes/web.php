@@ -8,6 +8,7 @@ use App\Http\Controllers\ExamCoordinator\QuestionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\ExamCoordinator\StudentController as StudentC;
+use App\Http\Controllers\ExamCoordinator\ProfileController as ProfileC;
 use App\Http\Controllers\Student\TakenExamController;
 use App\Http\Controllers\Student\UpcomingExamController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // Routes accessible to users with the 'admin' role
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::post('admin/department/departmentForm', [DepartmentController::class, 'storeDepartment'])->name('admin.addDepartment');
+    // Route::post('admin/department/save', [DepartmentController::class, 'storeDepartment'])->name('admin.storeDep');
 });
 
 // examCoordinator
@@ -56,6 +59,7 @@ Route::middleware(['auth', 'role:examCoordinator'])->group(function () {
     Route::resource('questionManagement', QuestionController::class);
     Route::resource('answerChoiceManagement', AnswerChoiceController::class);
     Route::resource('studentManagement', StudentC::class);
+    Route::resource('profileManagement', ProfileC::class);
     Route::post('examCoordinator/student/storebulk', [StudentC::class, 'storebulk'])->name('examCoordinator.student.storebulk');;
 });
 
@@ -83,7 +87,6 @@ Route::post('admin/college/save', [CollegeController::class, 'storeCollege'])->n
 Route::get('admin/college/list', [CollegeController::class, 'collegeList'])->name('collegeList');
 
 Route::get('admin/department/form', [DepartmentController::class, 'departmentForm'])->name('departmentForm');
-Route::post('admin/department/save', [DepartmentController::class, 'storeDepartment'])->name('storeDepartment');
 
 
 Route::get('admin/coordinator/form', [ExamCoordinatorController::class, 'coordinatorForm'])->name('coordinatorForm');
