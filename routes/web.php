@@ -47,6 +47,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // Routes accessible to users with the 'admin' role
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::post('admin/department/departmentForm', [DepartmentController::class, 'storeDepartment'])->name('admin.addDepartment');
+    // Route::post('admin/department/save', [DepartmentController::class, 'storeDepartment'])->name('admin.storeDep');
 });
 
 // examCoordinator
@@ -85,7 +87,6 @@ Route::post('admin/college/save', [CollegeController::class, 'storeCollege'])->n
 Route::get('admin/college/list', [CollegeController::class, 'collegeList'])->name('collegeList');
 
 Route::get('admin/department/form', [DepartmentController::class, 'departmentForm'])->name('departmentForm');
-Route::post('admin/department/save', [DepartmentController::class, 'storeDepartment'])->name('storeDepartment');
 
 
 Route::get('admin/coordinator/form', [ExamCoordinatorController::class, 'coordinatorForm'])->name('coordinatorForm');
