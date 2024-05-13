@@ -91,7 +91,7 @@ Route::get('admin/department/form', [DepartmentController::class, 'departmentFor
 
 Route::get('admin/coordinator/form', [ExamCoordinatorController::class, 'coordinatorForm'])->name('coordinatorForm');
 Route::post('admin/department/save', [ExamCoordinatorController::class, 'storeCoordinator'])->name('storeCoordinator');
-
+Route::get('admin/department/list', [ExamCoordinatorController::class, 'coordinatorList'])->name('examCoordinatorList');
 
 Route::get('admin/Schedule/home', [ScheduleController::class, 'examList'])->name('examList');
 Route::get('admin/Schedule/create/{examSetupId}', [ScheduleController::class, 'showExamSetup'])->name('createSchedule');
