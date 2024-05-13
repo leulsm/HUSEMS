@@ -33,11 +33,12 @@ class UpcomingExamController extends Controller
     $timeRemainingToStart = null;
 
     if ($schedule) {
-        $startingDatetimeDb = Carbon::parse($schedule->starting_datetime);
+        //$startingDatetimeDb = Carbon::parse($schedule->starting_datetime);
+        $startingDatetimeDb = Carbon::parse('2024-05-13 10:44:00');
         $startingDatetime = substr($startingDatetimeDb, 0, -3);
         $currentTime = Carbon::now()->timezone('Africa/Nairobi'); // Assuming East Africa Time
         $scheduledTime = Carbon::parse($startingDatetime); // Assuming East Africa Time
-        $timeRemainingToStart = $currentTime->diffInSeconds($scheduledTime)-10710;
+        $timeRemainingToStart = max($currentTime->diffInSeconds($scheduledTime) - 10750, 0);
         // Format the remaining time
 // =======
 

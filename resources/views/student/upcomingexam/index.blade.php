@@ -50,23 +50,6 @@
                             <div class="row">
                                 <div class="col-12">
                                     <a class="ticket-item">
-                                        <div class="ticket-title">
-                                            <h4>Time Left</h4>
-                                        </div>
-                                        <div>
-
-                                        <div class="ticket-info">
-                                            @if ($timeRemainingToStart)
-                                                <h4>Time Remaining: <span id="countdown">
-                                                <div>
-                                                <h4>{{ $timeRemainingToStart }}</h4>
-                                                </div>
-                                                    </span></h4>
-                                            @else
-                                                <h4>Not Scheduled yet!</h4>
-                                            @endif
-                                        </div>
-
                                     <div class="row">
                                         <div class="col-6">
                                             <a class="ticket-item">
@@ -93,7 +76,7 @@
                                         <div class="col-12">
                                             <a class="ticket-item">
                                                 <div class="ticket-title">
-                                                    <h4>Time Left</h4>
+                                                    <h4>Duration of Exam</h4>
                                                 </div>
                                                 <div class="ticket-info">
                                                     <div>{{ $examSetup->duration_time }}</div>
@@ -101,12 +84,28 @@
                                             </a>
                                         </div>
                                     </div>
+                                    <div class="ticket-title">
+                                            <h4>Time Left</h4>
+                                        </div>
+                                        <div>
+
+                                        <div class="ticket-info">
+                                            @if ($timeRemainingToStart >= 0)
+                                                <h4>Time Remaining: <span id="countdown">
+                                                <div>
+                                                <h4>{{ $timeRemainingToStart }}</h4>
+                                                </div>
+                                                    </span></h4>
+                                            @else
+                                                <h4>Not Scheduled yet!</h4>
+                                            @endif
+                                        </div>
                                     <a href="{{ route('student.upcomingexam.create', ['examSetupId' => $examSetup->id]) }}"
                                         class="">
                                         <div class="row">
                                             <div class="col-12">
                                                 <form action="GET" class="dropzone" id="mydropzone">
-                                                    <div class="mx-auto my-3 add-question">Start</div>
+                                                <div class="mx-auto my-3 add-question" id="startButton" disabled>Start</div>
                                                 </form>
                                             </div>
                                         </div>
@@ -116,18 +115,7 @@
                                 </div>
                             </div>
 
-                            </div>
-                            <a href="{{ route('student.upcomingexam.create', ['examSetupId' => $examSetup->id]) }}"
-                                class="">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <form action="GET" class="dropzone" id="mydropzone">
-                                            <div class="mx-auto my-3 add-question">Start</div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </a>
-                            </div>
+
                         </div>
                     </div>
                 @endforeach
@@ -152,11 +140,23 @@
         var timeRemainingToStart = parseInt(countdownElement.textContent);
 
         if (timeRemainingToStart > 0) {
+            var startButton = document.getElementById('startButton');
+            startButton.style.display = 'none';
+            startButton.disabled = true;
             timeRemainingToStart--;
             countdownElement.textContent = timeRemainingToStart;
         }
-        countdownElement.textContent = timeRemainingToStart;
+
+        else{
+        var startButton = document.getElementById('startButton');
+        startButton.style.display = 'block'; // Show the Start button
+        startButton.disabled = false; // Enable the Start button
+        clearInterval(countdownInterval);
+
+        }
+        //countdownElement.textContent = timeRemainingToStart;
     }
+
 
     // Call the updateCountdown function initially
     updateCountdown();
