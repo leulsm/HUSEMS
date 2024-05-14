@@ -6,7 +6,7 @@
         <div class="section-header">
             <h1>Exam Coordinator Registration</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ route('examCoordinatorList') }}" class="btn btn-info">College List</a>
+                <div class="breadcrumb-item active"><a href="{{ route('examCoordinatorList') }}" class="btn btn-info">Exam Coordinators List</a>
                 </div>
             </div>
         </div>
@@ -45,11 +45,11 @@
                                         <label>Phone</label>
                                         <input type="text" name="phone" class="form-control">
                                     </div>
-
-                                </div>
-                                <div class="card-footer text-right">
+                                    <div class="card-footer text-center">
                                     <button class="btn btn-primary">Register Coordinator</button>
                                 </div>
+                                </div>
+
                             </form>
                         </div>
                     </div>

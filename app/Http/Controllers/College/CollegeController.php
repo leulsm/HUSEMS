@@ -27,4 +27,10 @@ class CollegeController extends Controller
 
         return view('admin.college.collegeList', compact('list'));
     }
+    function collegeDetail(string $id){
+        $college = College::findOrFail($id);
+        //$examSetupId = $student->exam_setup_id;
+        return view('admin.college.collegedetail',compact('college'));
+
+    }
 }

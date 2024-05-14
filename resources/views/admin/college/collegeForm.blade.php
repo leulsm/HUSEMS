@@ -1,10 +1,10 @@
 @extends('admin.layout.master')
 
 @section('content')
-    {{-- <div class="main-content"> --}}
+{{-- <div class="main-content"> --}}
     <section class="section">
         <div class="section-header">
-            <h1>Register College</h1>
+            <h1>Exam Coordinator Registration</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('collegeList') }}" class="btn btn-info">College List</a>
                 </div>
@@ -14,25 +14,37 @@
             @csrf
             <div class="section-body">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 col-md-8 col-lg-6 mx-auto">
+                        <!-- Adjust the column classes as per your desired width -->
                         <div class="card">
-                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                                <div class="form-group">
-                                    <label>College Name</label>
-                                    <input type="text" class="form-control" name="college_name">
+                            <form>
+
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>College Name</label>
+                                        <input type="text" name="college_name" class="form-control"
+                                            required="">
+                                        <div class="valid-feedback">
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>College Abbreviation</label>
+                                        <input type="text" name="college_abbrivation" class="form-control" required="">
+                                        <div class="valid-feedback">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="card-footer text-center">
+                                    <button class="btn btn-primary">Register</button>
                                 </div>
-                                <div class="form-group">
-                                    <label>College Abbreviation</label>
-                                    <input type="text" class="form-control" name="college_abbrivation">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Register</button>
-                            </div>
+
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
-
-
-        {{-- </section> --}}
+                {{-- </div> --}}
+    </section>
     @endsection
