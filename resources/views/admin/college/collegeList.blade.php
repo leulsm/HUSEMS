@@ -4,7 +4,7 @@
     {{-- <div class="main-content"> --}}
     <section class="section">
         <div class="section-header">
-            <h1>Collage List</h1>
+            <h1>College List</h1>
         </div>
 
         <div class="card">

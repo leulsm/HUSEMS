@@ -17,7 +17,7 @@
                         <div class="card">
                             <div class="card-body d-flex flex-column align-items-center justify-content-center">
                                 <div class="form-group">
-                                    <label>Departmen Name</label>
+                                    <label>Department Name</label>
                                     <input type="text" class="form-control" name="department_name">
                                 </div>
                                 <div class="form-group">
