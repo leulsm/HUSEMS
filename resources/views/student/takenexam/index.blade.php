@@ -6,8 +6,8 @@
             <h1>Taken Exam</h1>
 
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ route('student.dashboard') }}">Dashboard</a></div>
-                <div class="breadcrumb-item">Exam Taken</div>
+                <div class="breadcrumb-item active"><a href="{{ route('student.takenexam.index') }}">Taken Exam</a></div>
+                {{-- <div class="breadcrumb-item">Exam Taken</div> --}}
             </div>
         </div>
 

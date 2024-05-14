@@ -16,4 +16,8 @@ class Schedule extends Model
         'exam_setup_id'
     ];
 
+    public function examSetup()
+    {
+        return $this->belongsTo(ExamSetup::class);
+    }
 }
