@@ -20,9 +20,7 @@
                 <a href="" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                <a href="features-settings.html" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Settings
-                </a>
+
                 <div class="dropdown-divider"></div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -47,10 +45,10 @@
 
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="active"><a class="nav-link" href="{{ route('student.dashboard') }}"><i
+            {{--       <li class="active"><a class="nav-link" href="{{ route('student.dashboard') }}"><i
                         class="ml-3 fa-solid fa-table-columns"></i><span>
                         Dashboard</span></a>
-            </li>
+            </li> --}}
             <li><a class="nav-link" href="{{ route('student.upcomingexam.index') }}"><i
                         class="ml-3 fa-solid fa-hourglass-start"></i>
                     <span>Upcoming Exam</span></a>

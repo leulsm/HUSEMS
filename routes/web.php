@@ -33,9 +33,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -66,11 +66,12 @@ Route::middleware(['auth', 'role:examCoordinator'])->group(function () {
 // student
 Route::middleware(['auth', 'role:student'])->group(function () {
     // Routes accessible to users with the 'admin' role
-    Route::get('student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
+    // Route::get('student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
     Route::get('student/upcomingexam/index', [UpcomingExamController::class, 'index'])->name('student.upcomingexam.index');
     Route::get('student/upcomingexam/create', [UpcomingExamController::class, 'create'])->name('student.upcomingexam.create');
     Route::post('student/upcomingexam/store', [UpcomingExamController::class, 'store'])->name('student.upcomingexam.store');
     Route::get('student/upcomingexam/submit', [UpcomingExamController::class, 'submit'])->name('student.upcomingexam.submit');
+    Route::get('student/upcomingexam/show/{id}', [UpcomingExamController::class, 'show'])->name('student.upcomingexam.show');
 
     Route::get('student/takenexam/index', [TakenExamController::class, 'index'])->name('student.takenexam.index');
     Route::get('student/takenexam/show/{id}', [TakenExamController::class, 'show'])->name('student.takenexam.show');
@@ -99,6 +100,10 @@ Route::get('admin/department/list', [ExamCoordinatorController::class, 'coordina
 Route::get('admin/Schedule/home', [ScheduleController::class, 'examList'])->name('examList');
 Route::get('admin/Schedule/create/{examSetupId}', [ScheduleController::class, 'showExamSetup'])->name('createSchedule');
 Route::post('admin/Schedule/create', [ScheduleController::class, 'setSchedule'])->name('setSchedule');
+Route::get('admin/Schedule/edit/{schedule_id}', [ScheduleController::class, 'edit'])->name('editSchedule');
+Route::put('admin/Schedule/update/{id}', [ScheduleController::class, 'update'])->name('updateSchedule');
+Route::get('admin/Schedule/delete/{id}', [ScheduleController::class, 'delete'])->name('deleteSchedule');
+
 //Route::post('/exam-setups/{examSetupId}', 'ScheduleController@showExamSetup')->name('createSchedule');
 
 

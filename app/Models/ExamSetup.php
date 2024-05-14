@@ -32,4 +32,8 @@ class ExamSetup extends Model
     {
         return $this->hasMany(Student::class);
     }
+    public function schedule()
+    {
+        return $this->hasOne(Schedule::class);
+    }
 }

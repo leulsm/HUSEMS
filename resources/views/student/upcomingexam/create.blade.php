@@ -26,7 +26,7 @@
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
 
-    <script>
+    {{-- <script>
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
@@ -35,7 +35,7 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-94034622-3');
-    </script>
+    </script> --}}
     <!-- /END GA -->
     <style>
         .no-select {
@@ -68,7 +68,13 @@
                         <h1>Exam</h1>
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active">
-                                <p>Time: <span id="current-time"></span></p>
+                                <p>Check: <span id="current-time2"></span></p>
+                            </div>
+                            <div class="breadcrumb-item active">
+                                <p>End: <span id="current-time1">--</span></p>
+                            </div>
+                            <div class="breadcrumb-item active">
+                                <p>Time: <span id="current-time">--</span></p>
                             </div>
                         </div>
                     </div>
@@ -88,6 +94,7 @@
                                                     aria-controls="question{{ $key }}"
                                                     aria-selected="{{ $question->id == session('active_question') || ($key == 0 && !session('active_question')) ? 'true' : 'false' }}">
                                                     {{ $question->question_text }}
+
                                                 </a>
                                             </li>
                                         @endforeach
@@ -156,7 +163,7 @@
 
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2024 <div class="bullet"></div> Design By <a href="">Mafia's</a>
+                    Copyright &copy; 2024 <div class="bullet"></div> Developed By <a href="">Mafia's</a>
                 </div>
                 <div class="footer-right">
 
@@ -198,19 +205,35 @@
             var examEndTime = localStorage.getItem('examEndTime');
 
             if (examEndTime) {
+
+                // var dates = new Date(examEndTime);
+                // document.getElementById('current-time2').textContent = dates;
+                var dateWithoutTimezone = examEndTime.replace(/ [A-Z\/]+$/, '');
+
+                // Create the Date object from the string without timezone information
+                var date = new Date(dateWithoutTimezone);
+                document.getElementById('current-time2').textContent = dates;
+
                 startTimer(new Date(examEndTime));
             } else {
+
                 var examEndTime = "{{ session('exam_end_time') }}";
+                document.getElementById('current-time2').textContent = examEndTime;
 
                 localStorage.setItem('examEndTime', examEndTime);
+
                 startTimer(new Date(examEndTime));
             }
 
             function startTimer(endTime) {
+                document.getElementById('current-time1').textContent = "endTime";
+
                 function updateTime() {
                     var now = new Date();
                     var timeDifference = Math.max(endTime.getTime() - now.getTime(),
                         0);
+                    // $("#current-time").text(timeDifference);
+
                     if (timeDifference <= 0) {
                         $("#current-time").text("Exam Ended");
                         localStorage.removeItem('examEndTime');

@@ -49,16 +49,45 @@
                                         </a>
                                     </div>
                                 </div>
-                                <a href="{{ route('createSchedule', ['examSetupId' => $examSetup->id]) }}"
-                                    class="">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <form action="GET" class="dropzone" id="mydropzone">
-                                                <div class="mx-auto my-3 add-question">Add Schedule</div>
-                                            </form>
+                                @if ($examSetup->schedule)
+                                    <div class="row p-3">
+                                        <div class="col-9">
+                                            <p>Schedule is Already settled.</p>
+                                        </div>
+                                        {{-- <div class="col-1">
+                                            <a href="{{ route('editSchedule', $examSetup->schedule->id) }}"> <i
+                                                    class="fas fa-edit text-green"></i></a>
+
+                                        </div> --}}
+                                        <div class="col-1">
+                                            <a href="{{ route('editSchedule', $examSetup->schedule->id) }}">
+                                                <i class="fas fa-edit" style="color: green;"></i>
+                                            </a>
+                                        </div>
+                                        {{-- <div class="col-1">
+                                            <a href="{{ route('deleteSchedule', $examSetup->schedule->id) }}"> <i
+                                                    class="fas fa-trash text-green"></i></a>
+                                        </div> --}}
+                                        <div class="col-1 mr-3">
+                                            <a href="#"
+                                                onclick="confirmDelete('{{ route('deleteSchedule', $examSetup->schedule->id) }}')">
+                                                <i class="fas fa-trash text-green" style="color: red;"></i>
+                                            </a>
                                         </div>
                                     </div>
-                                </a>
+                                @else
+                                    <a href="{{ route('createSchedule', ['examSetupId' => $examSetup->id]) }}"
+                                        class="">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <form action="GET" class="dropzone" id="mydropzone">
+                                                    <div class="mx-auto my-3 add-question">Set Schedule</div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endif
+
 
                             </div>
                         </div>
@@ -66,7 +95,15 @@
                 </div>
             @endforeach
         </div>
-        >
+
+
 
     </section>
+    <script>
+        function confirmDelete(url) {
+            if (confirm("Are you sure you want to delete this schedule?")) {
+                window.location.href = url; // Redirect to the delete route if user confirms
+            }
+        }
+    </script>
 @endsection

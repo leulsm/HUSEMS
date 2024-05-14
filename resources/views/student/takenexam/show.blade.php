@@ -6,7 +6,7 @@
             <h1>{{ $examSetup->exam_title }} Result</h1>
 
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ route('student.dashboard') }}">Dashboard</a></div>
+                {{-- <div class="breadcrumb-item active"><a href="{{ route('student.dashboard') }}">Dashboard</a></div> --}}
                 <div class="breadcrumb-item"><a href="{{ route('student.takenexam.index') }}">Taken Exams</a></div>
                 <div class="breadcrumb-item">Exam
                     Result</div>
