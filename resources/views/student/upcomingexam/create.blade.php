@@ -49,9 +49,10 @@
             /* Standard */
         }
     </style>
+
 </head>
 
-<body>
+<body oncontextmenu="return false;" onkeydown="return false;">
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
             <div class="navbar-bg"></div>
@@ -67,15 +68,22 @@
                     <div class="section-header">
                         <h1>Exam</h1>
                         <div class="section-header-breadcrumb">
+                            {{-- <div class="breadcrumb-item active">
+                                <p>Controll time: <span id="current-time">{{ $endTimeFormatted }}</span></p>
+                            </div> --}}
+
                             <div class="breadcrumb-item active">
-                                <p>Check: <span id="current-time2"></span></p>
+                                {{ $endTime }}
+                                <p>now: <span id="remaining-time2"></span></p>
+                                <p>curr: <span id="remaining-time3"></span></p>
+
+                                <p>Chek: <span id="remaining-time1"></span></p>
+                                <p>Time:
+                                    <span id="remaining-time"></span>
+
+                                </p>
                             </div>
-                            <div class="breadcrumb-item active">
-                                <p>End: <span id="current-time1">--</span></p>
-                            </div>
-                            <div class="breadcrumb-item active">
-                                <p>Time: <span id="current-time">--</span></p>
-                            </div>
+
                         </div>
                     </div>
                 </section>
@@ -94,6 +102,19 @@
                                                     aria-controls="question{{ $key }}"
                                                     aria-selected="{{ $question->id == session('active_question') || ($key == 0 && !session('active_question')) ? 'true' : 'false' }}">
                                                     {{ $question->question_text }}
+                                                    @php
+                                                        $submitted = App\Models\ExamTaken::where(
+                                                            'student_id',
+                                                            Auth::id(),
+                                                        )
+                                                            ->where('question_id', $question->id)
+                                                            ->exists();
+                                                    @endphp
+
+                                                    @if ($submitted)
+                                                        <i class="fas fa-check"></i>
+                                                        <!-- Show a tick icon if the question is submitted -->
+                                                    @endif
 
                                                 </a>
                                             </li>
@@ -115,9 +136,11 @@
                                             </div>
                                             <form method="POST" action="{{ route('student.upcomingexam.store') }}">
                                                 @csrf
-                                                <div class="row">
+                                                {{-- <div class="row">
                                                     <input type="hidden" name="question_id"
                                                         value="{{ $question->id }}">
+                                                    <input type="hidden" name="exam_setup_id"
+                                                        value="{{ $examSetup->id }}">
                                                     @foreach ($question->answerOptions as $key => $answerOption)
                                                         @php
                                                             $alphabet = chr(65 + $key); // Convert index to corresponding alphabet (A, B, C, ...)
@@ -136,12 +159,92 @@
                                                             </div>
                                                         </div>
                                                     @endforeach
+                                                </div> --}}
+
+
+                                                {{-- <div class="row">
+                                                    <input type="hidden" name="question_id"
+                                                        value="{{ $question->id }}">
+                                                    <input type="hidden" name="exam_setup_id"
+                                                        value="{{ $examSetup->id }}">
+                                                    @foreach ($question->answerOptions as $key => $answerOption)
+                                                        @php
+                                                            $alphabet = chr(65 + $key); // Convert index to corresponding alphabet (A, B, C, ...)
+                                                            // Check if the answer option matches the submitted answer option for the current question
+                                                            $submitted = App\Models\ExamTaken::where(
+                                                                'student_id',
+                                                                Auth::id(),
+                                                            )
+                                                                ->where('question_id', $question->id)
+                                                                ->exists();
+
+                                                        @endphp
+                                                        <div class="col-sm-6">
+                                                            <div class="form-check">
+                                                                <!-- Use 'checked' attribute if the answer option is selected -->
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="answer_option_id"
+                                                                    id="answerOption{{ $key }}"
+                                                                    value="{{ $answerOption->id }}"
+                                                                    {{ $isSelected ? 'checked' : '' }}>
+                                                                <label class="form-check-label"
+                                                                    for="answerOption{{ $key }}">
+                                                                    {{ $alphabet }}.
+                                                                    {{ $answerOption->option_text }}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div> --}}
+                                                <div class="row">
+                                                    <input type="hidden" name="question_id"
+                                                        value="{{ $question->id }}">
+                                                    <input type="hidden" name="exam_setup_id"
+                                                        value="{{ $examSetup->id }}">
+                                                    @foreach ($question->answerOptions as $key => $answerOption)
+                                                        @php
+                                                            $alphabet = chr(65 + $key); // Convert index to corresponding alphabet (A, B, C, ...)
+                                                            // Check if the answer option matches the submitted answer option for the current question
+                                                            $submitted = App\Models\ExamTaken::where(
+                                                                'student_id',
+                                                                Auth::id(),
+                                                            )
+                                                                ->where('question_id', $question->id)
+                                                                ->where('answer_option_id', $answerOption->id)
+                                                                ->exists();
+                                                        @endphp
+                                                        <div class="col-sm-6">
+                                                            <div class="form-check">
+                                                                <!-- Use 'checked' attribute if the answer option is submitted -->
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="answer_option_id"
+                                                                    id="answerOption{{ $key }}"
+                                                                    value="{{ $answerOption->id }}"
+                                                                    {{ $submitted ? 'checked' : '' }}>
+                                                                <label class="form-check-label"
+                                                                    for="answerOption{{ $key }}">
+                                                                    {{ $alphabet }}.
+                                                                    {{ $answerOption->option_text }}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-4">
+                                                    <div class="col-6">
                                                         @if ($loop->last)
-                                                            <a class="btn btn-primary mt-3"
-                                                                href="{{ route('student.takenexam.index') }}">Finish</a>
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <button class="btn btn-primary mt-3" value="finish"
+                                                                        type="submit">Save</button>
+
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <a class="btn btn-primary mt-3"
+                                                                        href="{{ route('student.upcomingexam.finish', $examSetup->id) }}">Finish</a>
+                                                                </div>
+
+                                                            </div>
                                                         @else
                                                             <button class="btn btn-primary mt-3" type="submit">Save &
                                                                 Continue</button>
@@ -200,45 +303,46 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('admin/assets/js/page/forms-advanced-forms.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             var examEndTime = localStorage.getItem('examEndTime');
 
             if (examEndTime) {
 
-                // var dates = new Date(examEndTime);
-                // document.getElementById('current-time2').textContent = dates;
-                var dateWithoutTimezone = examEndTime.replace(/ [A-Z\/]+$/, '');
 
-                // Create the Date object from the string without timezone information
-                var date = new Date(dateWithoutTimezone);
-                document.getElementById('current-time2').textContent = dates;
+                // startTimer(new Date(examEndTime));
+                // document.getElementById('current-time2').textContent = datformat;
 
-                startTimer(new Date(examEndTime));
+                startTimer(examEndTime);
             } else {
 
                 var examEndTime = "{{ session('exam_end_time') }}";
-                document.getElementById('current-time2').textContent = examEndTime;
+                // document.getElementById('current-time2').textContent = examEndTime;
 
                 localStorage.setItem('examEndTime', examEndTime);
 
-                startTimer(new Date(examEndTime));
+                startTimer(examEndTime);
             }
 
             function startTimer(endTime) {
-                document.getElementById('current-time1').textContent = "endTime";
 
                 function updateTime() {
+
                     var now = new Date();
+                    document.getElementById('current-time1').textContent = now;
+
                     var timeDifference = Math.max(endTime.getTime() - now.getTime(),
                         0);
+                    document.getElementById('current-time2').textContent = endTime.getTime();
+
                     // $("#current-time").text(timeDifference);
+                    document.getElementById('current-time2').textContent = now.getTime();
 
                     if (timeDifference <= 0) {
                         $("#current-time").text("Exam Ended");
                         localStorage.removeItem('examEndTime');
-                        window.location.href =
-                            "{{ route('student.upcomingexam.submit', ['examSetupId' => $examSetup->id]) }}";
+                        //window.location.href =
+                        //  "{{ route('student.upcomingexam.submit', ['examSetupId' => $examSetup->id]) }}";
                     } else {
                         var hours = Math.floor(timeDifference / (1000 * 60 * 60));
                         var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
@@ -258,8 +362,157 @@
                 setInterval(updateTime, 1000);
             }
         });
-    </script>
+    </script> --}}
+    {{-- <script>
+        // Retrieve the remaining time from the PHP variable passed to the view
+        var remainingTimeInSeconds = {{ $remainingTimeInSeconds }};
 
+        // Function to update the remaining time display
+        function updateRemainingTime() {
+            // Calculate remaining hours, minutes, and seconds
+            var hours = Math.floor(remainingTimeInSeconds / 3600);
+            var minutes = Math.floor((remainingTimeInSeconds % 3600) / 60);
+            var seconds = remainingTimeInSeconds % 60;
+
+            // Format the remaining time string
+            var remainingTimeStr = hours + "h " + minutes + "m " + seconds + "s";
+
+            // Display the remaining time
+            document.getElementById('remaining-time').textContent = remainingTimeStr;
+
+            // Update the remaining time every second
+            setTimeout(function() {
+                remainingTimeInSeconds--;
+                updateRemainingTime();
+            }, 1000);
+        }
+
+        // Call the function to start updating the remaining time
+        updateRemainingTime();
+    </script> --}}
+    {{-- //////////heyyyyyyyyyyyyyyyy --}}
+    <script>
+        // Function to update the remaining time display
+        function updateRemainingTime() {
+            // Retrieve the remaining time from local storage or set it to the initial value
+            var remainingTimeInSeconds = localStorage.getItem('remainingTimeInSeconds') || {{ $remainingTimeInSeconds }};
+            document.getElementById('remaining-time1').textContent = remainingTimeInSeconds;
+
+            // Calculate remaining hours, minutes, and seconds
+            var hours = Math.floor(remainingTimeInSeconds / 3600);
+            var minutes = Math.floor((remainingTimeInSeconds % 3600) / 60);
+            var seconds = remainingTimeInSeconds % 60;
+
+            // Format the remaining time string
+            var remainingTimeStr = hours + "h " + minutes + "m " + seconds + "s";
+
+            // Display the remaining time
+            document.getElementById('remaining-time').textContent = remainingTimeStr;
+
+            // Update the remaining time every second
+            var countdownInterval = setInterval(function() {
+                remainingTimeInSeconds--;
+                localStorage.setItem('remainingTimeInSeconds', remainingTimeInSeconds); // Update local storage
+                if (remainingTimeInSeconds <= 0) {
+                    clearInterval(countdownInterval); // Stop countdown when time is up
+                    window.location.href =
+                        "{{ route('student.upcomingexam.submit', ['examSetupId' => $examSetup->id]) }}";
+                }
+                // Update the remaining time display
+                hours = Math.floor(remainingTimeInSeconds / 3600);
+                minutes = Math.floor((remainingTimeInSeconds % 3600) / 60);
+                seconds = remainingTimeInSeconds % 60;
+                remainingTimeStr = hours + "h " + minutes + "m " + seconds + "s";
+                document.getElementById('remaining-time').textContent = remainingTimeStr;
+            }, 1000);
+        }
+        // Call the function to start updating the remaining time
+        updateRemainingTime();
+    </script>
+    {{-- //////////////heyyyyyyyyyy --}}
+    {{-- <script>
+        // Function to calculate remaining time in seconds based on a fixed end time
+        function calculateRemainingTime(endTime) {
+            var currentTime = new Date().getTime();
+
+            var timeDifference = endTime - currentTime;
+            document.getElementById('remaining-time3').textContent = timeDifference;
+
+            return Math.floor(timeDifference / 1000);
+        }
+
+        // Function to update the remaining time display
+        function updateRemainingTime() {
+            // Set the end time (e.g., 1 hour from now)
+            var endTime = new Date().getTime() + (1 * 60 * 60 * 1000); // 1 hour from now
+
+            // Retrieve the remaining time from local storage or calculate it
+            var remainingTimeInSeconds = localStorage.getItem('remainingTimeInSeconds') || calculateRemainingTime(endTime);
+            localStorage.setItem('remainingTimeInSeconds', remainingTimeInSeconds);
+
+            // Update the remaining time every second
+            var countdownInterval = setInterval(function() {
+                remainingTimeInSeconds--;
+                localStorage.setItem('remainingTimeInSeconds', remainingTimeInSeconds); // Update local storage
+
+                // Calculate remaining hours, minutes, and seconds
+                var hours = Math.floor(remainingTimeInSeconds / 3600);
+                var minutes = Math.floor((remainingTimeInSeconds % 3600) / 60);
+                var seconds = remainingTimeInSeconds % 60;
+
+                // Format the remaining time string
+                var remainingTimeStr = hours + "h " + minutes + "m " + seconds + "s";
+
+                // Display the remaining time
+                document.getElementById('remaining-time1').textContent = remainingTimeInSeconds;
+                document.getElementById('remaining-time').textContent = remainingTimeStr;
+
+                // Stop countdown when time is up
+                if (remainingTimeInSeconds <= 0) {
+                    clearInterval(countdownInterval);
+                    localStorage.removeItem('remainingTimeInSeconds'); // Clear local storage
+                    // Redirect to the submit page
+                    // window.location.href = "{{ route('student.upcomingexam.submit', ['examSetupId' => $examSetup->id]) }}";
+                }
+            }, 1000);
+        }
+
+        // Call the function to start updating the remaining time when the page loads
+        window.onload = updateRemainingTime;
+    </script> --}}
+
+    {{-- <script>
+        // Disable right-click menu
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // Prevent opening new tabs or windows
+        window.onbeforeunload = function() {
+            return "Are you sure you want to leave?";
+        };
+
+        // Alert on page reload
+        window.addEventListener('beforeunload', function(e) {
+            e.preventDefault();
+            e.returnValue = '';
+        });
+    </script> --}}
+    {{-- <script>
+        var attemptCount = 0;
+        // var attemptCount = 0;
+
+        window.addEventListener('blur', function() {
+            // Increment the attempt count
+            attemptCount++;
+
+            // If the attempt count is less than 3, show a popup explaining why leaving is not allowed
+            if (attemptCount < 3) {
+                alert("You are not allowed to leave the exam page. Please complete the exam.");
+            } else {
+                // If the attempt count reaches 3, allow the user to leave by redirecting them to the specified route
+                window.location.href = "{{ route('student.upcomingexam.finish', $examSetup->id) }}";
+            }
+        });
+    </script> --}}
     <script>
         toastr.options.progressBar = true;
 

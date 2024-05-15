@@ -39,39 +39,60 @@
 
             <div class="col-12 col-md-6 col-lg-6">
                 Recent Questions
-                <div class="card ">
-                    <div class="card-body" id="top-5-scroll">
-                        <ul class="list-unstyled list-unstyled-border">
-                            @foreach ($questions as $index => $question)
-                                <li class="media">
-                                    {{-- <img class="mr-3 rounded" width="55"
-                                        src="{{ asset('admin/assets/img/products/product-3-50.png') }}" alt="product"> --}}
-                                    <div class="media-body">
-                                        <div class="media-title">Q{{ $index + 1 }}. {{ $question->question_text }}</div>
-                                        <div class="mt-1">
+                @if ($questions->isEmpty())
+                    <div class="card">
+                        <div class="card-header ">
+                            <h4>Empty Question Data</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="empty-state" data-height="400">
+                                <div class="empty-state-icon">
+                                    <i class="fas fa-question"></i>
+                                </div>
+                                <h2>We couldn't find any question data</h2>
+                                <p class="lead">
+                                    Register at least 1 Question.
+                                </p>
 
-                                            0 Answer Options
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <a href="{{ route('questionManagement.edit', $question->id) }}"
-                                            class="btn btn-primary px2"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ route('questionManagement.show', $question->id) }}"
-                                            class="btn btn-success"><i class="fas fa-eye"></i></a>
-                                    </div>
-
-                                    <a
-                                        href="{{ route('answerChoiceManagement.create', ['examSetupId' => $examSetupId, 'active_question' => $question->id]) }}">
-                                        <form action="GET" class="dropzone1" id="mydropzone">
-                                            <div class=" add-question"><i class="fas fa-plus px-2"></i></div>
-                                            <p class="px-2">Answer Options</p>
-                                        </form>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="card ">
+                        <div class="card-body" id="top-5-scroll">
+                            <ul class="list-unstyled list-unstyled-border">
+                                @foreach ($questions as $index => $question)
+                                    <li class="media">
+                                        {{-- <img class="mr-3 rounded" width="55"
+                                        src="{{ asset('admin/assets/img/products/product-3-50.png') }}" alt="product"> --}}
+                                        <div class="media-body">
+                                            <div class="media-title">Q{{ $index + 1 }}. {{ $question->question_text }}
+                                            </div>
+                                            <div class="mt-1">
+
+                                                0 Answer Options
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <a href="{{ route('questionManagement.edit', $question->id) }}"
+                                                class="btn btn-primary px2"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('questionManagement.show', $question->id) }}"
+                                                class="btn btn-success"><i class="fas fa-eye"></i></a>
+                                        </div>
+
+                                        <a
+                                            href="{{ route('answerChoiceManagement.create', ['examSetupId' => $examSetupId, 'active_question' => $question->id]) }}">
+                                            <form action="GET" class="dropzone1" id="mydropzone">
+                                                <div class=" add-question"><i class="fas fa-plus px-2"></i></div>
+                                                <p class="px-2">Answer Options</p>
+                                            </form>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
             </div>
 
         </div>

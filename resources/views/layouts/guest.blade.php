@@ -23,7 +23,7 @@
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
         </div>
-        <p class="p-2 ">HU Web-Based Exam Management System</p>
+        <p class="p-2 ">HU Web-Based Exam Management S</p>
 
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
