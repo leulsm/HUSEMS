@@ -1,18 +1,11 @@
 @extends('admin.layout.master')
 
 @section('content')
-<<<<<<< HEAD
-    {{-- <div class="main-content"> --}}
-    <section class="section">
-        <div class="section-header">
-            <h1>College List</h1>
-        </div>
-=======
+
 <section class="section">
     <div class="section-header">
         <h1>College List</h1>
     </div>
->>>>>>> 52ba533c9317b38ed06b1492d66ab4b58a4a15aa
 
     <div class="card">
         <div class="card-body">
@@ -42,7 +35,7 @@
                                 <td>{{ $item->college_abbrivation }}</td>
                                 <td>
                                     <a href="{{ route('college.detail', $item->id) }}" class="btn btn-primary">View Detail</a>
-                                    <a href="#" class="btn btn-success">Update</a>
+                                    <a href="{{route('college.edit', $item->id)}}" class="btn btn-success">Update</a>
                                     <a href="#" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>

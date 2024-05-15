@@ -88,6 +88,9 @@ Route::post('admin/college/save', [CollegeController::class, 'storeCollege'])->n
 Route::get('admin/college/list', [CollegeController::class, 'collegeList'])->name('collegeList');
 Route::get('admin/college/detail', [CollegeController::class, 'collegeDetail'])->name('collegeDetail');
 Route::get('admin/college/detail/{id}', [CollegeController::class, 'collegeDetail'])->name('college.detail');
+Route::get('admin/college/edit/{id}', [CollegeController::class, 'collegeEdit'])->name('college.edit');
+Route::put('admin/college/edit/{id}', [CollegeController::class, 'collegeUpdate'])->name('college.update');
+Route::delete('admin/college/delete/{id}', [CollegeController::class, 'destroyCollege'])->name('college.delete');
 
 
 Route::get('admin/department/form', [DepartmentController::class, 'departmentForm'])->name('departmentForm');

@@ -16,12 +16,7 @@
                     <div class="col-12 col-md-8 col-lg-6 mx-auto">
                         <!-- Adjust the column classes as per your desired width -->
                         <div class="card">
-<<<<<<< HEAD
-                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                                <div class="form-group">
-                                    <label>Department Name</label>
-                                    <input type="text" class="form-control" name="department_name">
-=======
+
                             <form>
 
                                 <div class="card-body">

@@ -33,4 +33,33 @@ class CollegeController extends Controller
         return view('admin.college.collegedetail',compact('college'));
 
     }
+    function collegeEdit(string $id){
+        $college = College::findOrFail($id);
+        //$examSetupId = $student->exam_setup_id;
+        return view('admin.college.collegeedit',compact('college'));
+
+    }
+    function collegeUpdate(Request $request, string $id)
+    {
+    $college = College::findOrFail($id);
+
+    $request->validate([
+        'college_name' => 'required|string',
+        'college_abbrivation' => 'required|string',
+    ]);
+
+    $college->college_name = $request->input('college_name');
+    $college->college_abbrivation = $request->input('college_abbrivation');
+    $college->save();
+
+    return redirect()->route('college.detail', $college->id);
+    }
+
+    public function destroyCollege(string $id)
+{
+    $college = College::findOrFail($id);
+    $college->delete();
+
+    return redirect()->route('college.detail', $college->id)->with('success', 'College deleted successfully.');
+}
 }
