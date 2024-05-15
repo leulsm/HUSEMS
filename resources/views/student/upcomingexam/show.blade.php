@@ -1,4 +1,4 @@
-@extends('examCoordinator.layout.master')
+@extends('student.layout.master')
 
 @section('content')
     <section class="section">
@@ -8,7 +8,7 @@
                 <div class="breadcrumb-item active"><a href="{{ route('student.upcomingexam.index') }}">Upcoming Exam</a>
                 </div>
 
-                <div class="breadcrumb-item active">Detail</div>
+                <div class="breadcrumb-item active">Exam Detail</div>
             </div>
         </div>
         <div class="section-body">
@@ -21,6 +21,18 @@
                                 <div class="invoice-number">Exam #{{ $examSetup->id }}</div>
                             </div>
                             <hr>
+                            <div class="row mb-4">
+                                <p><strong>Instructions</strong></p>
+                                <div class="col-12">
+                                    <div>Wait Untill Start Button Shows up</div>
+                                    <div>No Cheating</div>
+                                    <div>Dont Try to open new tab</div>
+                                    <div>Dont Try to go out of your exam tab, it will lead to disqualification of your exam
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <address>

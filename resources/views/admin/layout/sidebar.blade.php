@@ -14,13 +14,13 @@
                 <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
+                {{-- <div class="dropdown-title">Logged in 5 min ago</div> --}}
                 <a href="" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                <a href="features-settings.html" class="dropdown-item has-icon">
+                {{-- <a href="features-settings.html" class="dropdown-item has-icon">
                     <i class="fas fa-cog"></i> Settings
-                </a>
+                </a> --}}
                 <div class="dropdown-divider"></div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -44,7 +44,7 @@
         </div>
 
         <ul class="sidebar-menu">
-            <li class="menu-header">Dashboard</li>
+            {{-- <li class="menu-header">Dashboard</li> --}}
 
             <li class="active"><a class="nav-link" href="{{ route('admin.dashboard') }}"><i
                         class="fas fa-fire"></i><span>General

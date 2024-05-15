@@ -16,7 +16,7 @@
                             <h4>Total Admin</h4>
                         </div>
                         <div class="card-body">
-                            10
+                            100
                         </div>
                     </div>
                 </div>

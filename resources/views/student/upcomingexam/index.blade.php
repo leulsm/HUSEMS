@@ -13,7 +13,7 @@
         </div>
 
         <div class="row">
-            @if ($examSetups)
+            @if (count($examSetups) > 0)
                 @foreach ($examSetups as $examSetup)
                     <div class="col-md-4">
                         <div class="card card-hero">
@@ -65,123 +65,8 @@
                                                     <div>{{ $examSetup->duration_time }}</div>
                                                 </div>
                                             </a>
-
                                         </div>
-
                                     </div>
-                                    {{-- @if ($examSetup->schedule)
-                                        <div class="row">
-                                            <div class="col-6">
-
-                                                <a class="ticket-item">
-                                                    <div class="ticket-title">
-                                                        <h4>Time Remaining</h4>
-                                                    </div>
-                                                    <div class="ticket-info">
-                                                        <div>{{ $examSetup->duration_time }}</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    @endif --}}
-                                    {{-- @if ($examSetup->schedule)
-                                        <div class="row"> --}}
-                                    {{-- <div class="col-6">
-                                                <a class="ticket-item">
-                                                    <div class="ticket-title">
-                                                        <h4>Time Remaining</h4>
-                                                    </div>
-                                                    <div class="ticket-info">
-                                                        <div id="countdown"></div>
-                                                        <div id="countdown1"></div>
-                                                        <div id="countdown2"></div>
-                                                        <div id="countdown3"></div>
-                                                    </div>
-                                                </a>
-
-                                            </div>
-                                        </div> --}}
-                                    {{-- <script>
-                                            // Get the starting datetime string from the server
-                                            var startingDatetimeString = "{{ $examSetup->schedule->starting_datetime }}";
-
-                                            // Parse the starting datetime string to create a Date object
-                                            var startTime = new Date(startingDatetimeString).getTime();
-
-
-                                            // Update the countdown timer every second
-                                            var x = setInterval(function() {
-                                                // Get the current time
-                                                var now = new Date().getTime();
-                                                var days1 = Math.floor(now / (1000 * 60 * 60 * 24));
-                                                var hours1 = Math.floor((now % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                                var minutes1 = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
-                                                var seconds1 = Math.floor((now % (1000 * 60)) / 1000);
-                                                var formattedTime1 = hours1 + ":" + minutes1 + ":" + seconds1;
-
-                                                var days2 = Math.floor(startTime / (1000 * 60 * 60 * 24));
-                                                var hours2 = Math.floor((startTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                                var minutes2 = Math.floor((startTime % (1000 * 60 * 60)) / (1000 * 60));
-                                                var seconds2 = Math.floor((startTime % (1000 * 60)) / 1000);
-                                                var formattedTime2 = hours2 + ":" + minutes2 + ":" + seconds2;
-
-                                                // Calculate the time remaining in milliseconds
-                                                var distance = startTime - now;
-                                                document.getElementById("countdown1").innerHTML = formattedTime2;
-                                                document.getElementById("countdown2").innerHTML = formattedTime1;
-                                                document.getElementById("countdown3").innerHTML = distance;
-
-
-                                                // Calculate days, hours, minutes, and seconds
-                                                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                                                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                                                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                                                var formattedTime = hours + ":" + minutes + ":" + seconds;
-
-                                                // Display the countdown timer
-                                                document.getElementById("countdown").innerHTML = days + "d " + hours + "h " +
-                                                    minutes + "m " + seconds + "s ";
-
-                                                // If the countdown is over, display a message
-                                                if (distance < 0) {
-                                                    clearInterval(x);
-                                                    document.getElementById("countdown").innerHTML = "EXAM STARTED";
-                                                }
-                                            }, 1000);
-                                        </script> --}}
-                                    {{-- <script>
-                                            // Get the start time of the exam from the server
-                                            var startTime = new Date("{{ $examSetup->schedule->starting_datetime }}").getTime();
-
-                                            // Update the countdown timer every second
-                                            var x = setInterval(function() {
-                                                // Get the current time
-                                                var now = new Date().getTime();
-
-                                                // Calculate the time remaining in seconds
-                                                var distance = startTime - now;
-
-                                                // Calculate days, hours, minutes, and seconds
-                                                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                                                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                                                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                                                // Display the countdown timer
-                                                document.getElementById("countdown").innerHTML = days + "d " + hours + "h " +
-                                                    minutes + "m " + seconds + "s ";
-
-                                                // If the countdown is over, display a message
-                                                if (distance < 0) {
-                                                    clearInterval(x);
-                                                    document.getElementById("countdown").innerHTML = "EXAM STARTED";
-                                                }
-                                            }, 1000);
-                                        </script> --}}
-                                    {{-- @endif --}}
-
-
                                 </div>
 
                             </div>
@@ -206,10 +91,28 @@
                     </div>
                 @endforeach
             @else
-                <div class="col-md-12">
+                {{-- <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <h4>No upcoming exam found.</h4>
+                        </div>
+                    </div>
+                </div> --}}
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header ">
+                            <h4>Empty Upcoming data</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="empty-state" data-height="400">
+                                <div class="empty-state-icon">
+                                    <i class="fas fa-question"></i>
+                                </div>
+                                <h2>We couldn't find any Upcoming Exam Setup data</h2>
+                                <p class="lead">
+                                    It will appear here once you are registered.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

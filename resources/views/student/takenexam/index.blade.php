@@ -12,7 +12,7 @@
         </div>
 
         <div class="row">
-            @if ($examSetups)
+            @if (count($examSetups) > 0)
                 @foreach ($examSetups as $examSetup)
                     <div class="col-md-4">
                         <div class="card card-hero">
@@ -72,8 +72,19 @@
             @else
                 <div class="col-md-12">
                     <div class="card">
+                        <div class="card-header ">
+                            <h4>Empty Taken data</h4>
+                        </div>
                         <div class="card-body">
-                            <h4>No Taken exam found.</h4>
+                            <div class="empty-state" data-height="400">
+                                <div class="empty-state-icon">
+                                    <i class="fas fa-question"></i>
+                                </div>
+                                <h2>We couldn't find any Taken Exam Setup data</h2>
+                                <p class="lead">
+                                    It will appear here once you take an exam.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

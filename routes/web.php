@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\College\CollegeController;
 use App\Http\Controllers\Department\DepartmentController;
 use App\Http\Controllers\Schedule\ScheduleController;
-
-
+// use App\Http\Controllers\Student\StudentProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +71,9 @@ Route::middleware(['auth', 'role:student'])->group(function () {
     Route::post('student/upcomingexam/store', [UpcomingExamController::class, 'store'])->name('student.upcomingexam.store');
     Route::get('student/upcomingexam/submit', [UpcomingExamController::class, 'submit'])->name('student.upcomingexam.submit');
     Route::get('student/upcomingexam/show/{id}', [UpcomingExamController::class, 'show'])->name('student.upcomingexam.show');
-
+    Route::get('student/upcomingexam/finish/{id}', [UpcomingExamController::class, 'finish'])->name('student.upcomingexam.finish');
+    // Route::get('student/profile/index', [StudentProfileController::class, 'index'])->name('student.profile.index');
+    // finish
     Route::get('student/takenexam/index', [TakenExamController::class, 'index'])->name('student.takenexam.index');
     Route::get('student/takenexam/show/{id}', [TakenExamController::class, 'show'])->name('student.takenexam.show');
 

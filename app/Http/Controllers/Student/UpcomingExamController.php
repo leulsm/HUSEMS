@@ -70,7 +70,7 @@ class UpcomingExamController extends Controller
         $questions = Question::with('answerOptions')
             ->whereHas('examSetup', function ($query) use ($examSetupId) {
                 $query->where('id', $examSetupId);
-            })
+            })->inRandomOrder()
             ->get();
 
         $examSetup = ExamSetup::findOrFail($examSetupId);
@@ -82,40 +82,128 @@ class UpcomingExamController extends Controller
         // Calculate the exam end time based on the allowed time
         $duration = $examSetup->duration_time; // Assuming $duration_time is in the format "00:30:00"
 
-        // Extract hours, minutes, and seconds from the duration
+        // // Extract hours, minutes, and seconds from the duration
         list($hours, $minutes, $seconds) = explode(':', $duration);
 
-        // Calculate the total duration in minutes
+        // // Calculate the total duration in minutes
         $totalMinutes = ($hours * 60) + $minutes;
 
-        // Calculate the exam end time based on the total duration
+        // // Calculate the exam end time based on the total duration
         $endTime = Carbon::now()->addMinutes($totalMinutes);
-        // Store the exam end time in the user's session
-        $endTimeFormatted = $endTime->format('D M d Y H:i:s e');
-        // $endTimeFormatted = $endTime->format('Y-m-d\TH:i:s');
-        session(['exam_end_time' => $endTimeFormatted]);
+        // // Store the exam end time in the user's session
+        // $endTimeFormatted = $endTime->format('D M d Y H:i:s');
+        // // $endTimeFormatted = $endTime->format('Y-m-d\TH:i:s');
+        // session(['exam_end_time' => $endTimeFormatted]);
 
-        return view('student.upcomingexam.create', compact('examSetup', 'questions', 'endTimeFormatted'));
+        // return view('student.upcomingexam.create', compact('examSetup', 'questions', 'endTimeFormatted'));
+        // $remainingTimeInSeconds = $duration;
+        $remainingTimeInSeconds = $endTime->diffInSeconds(Carbon::now());
+
+        return view('student.upcomingexam.create', compact('examSetup', 'questions', 'remainingTimeInSeconds', 'endTime', 'duration'));
     }
 
+    // public function store(SubmitQuestionRequest $request)
+    // {
+
+    //     if ($request->input('action') === 'finish') {
+    //         // Handle Finish action
+    //         // Store the answer and finish the exam
+    //         // Redirect to the finish page or any other desired page
+    //         $user = Auth::user(); // Assuming you're using Laravel's built-in authentication
+
+    //         $examTaken = new ExamTaken();
+    //         $examTaken->answer_option_id = $request->answer_option_id;
+    //         $examTaken->question_id = $request->question_id;
+    //         $examTaken->student_id = $user->id;
+
+    //         $examSetupId = $request->query('examSetupId');
+
+    //         $student = $user->students()->where('exam_setup_id', $examSetupId)->first();
+
+    //         $student->status = 'Completed';
+    //         $student->save();
+
+
+    //         $examTaken->save();
+
+    //         toastr()->success("Exam Finished");
+    //         return redirect()->route('student.takenexam.index');
+    //     }
+
+    //     $user = Auth::user(); // Assuming you're using Laravel's built-in authentication
+
+    //     $examTaken = new ExamTaken();
+    //     $examTaken->answer_option_id = $request->answer_option_id;
+    //     $examTaken->question_id = $request->question_id;
+    //     $examTaken->student_id = $user->id;
+
+
+    //     $examTaken->save();
+
+    //     toastr()->success("Answer Saved");
+
+
+    //     // return view('student.upcomingexam.create', compact('examSetup', 'questions'));
+    //     return redirect()->back()->withInput()->with('active_question', $request->question_id);
+    // }
     public function store(SubmitQuestionRequest $request)
     {
-
         $user = Auth::user(); // Assuming you're using Laravel's built-in authentication
 
-        $examTaken = new ExamTaken();
-        $examTaken->answer_option_id = $request->answer_option_id;
-        $examTaken->question_id = $request->question_id;
-        $examTaken->student_id = $user->id;
+        $existingExamTaken = ExamTaken::where('student_id', $user->id)
+            ->where('question_id', $request->question_id)
+            ->first();
 
+        if ($existingExamTaken) {
+            // Update the existing answer
+            $existingExamTaken->update([
+                'answer_option_id' => $request->answer_option_id,
+            ]);
+            toastr()->success("Answer Updated");
+        } else {
+            // Create a new answer
+            $examTaken = new ExamTaken();
+            $examTaken->answer_option_id = $request->answer_option_id;
+            $examTaken->question_id = $request->question_id;
+            $examTaken->student_id = $user->id;
+            $examTaken->save();
+            toastr()->success("Answer Saved");
+        }
 
-        $examTaken->save();
+        if ($request->input('action') === 'finish') {
+            // Handle Finish action
+            // Store the answer and finish the exam
+            // Redirect to the finish page or any other desired page
 
-        toastr()->success("Answer Saved");
+            $examSetupId = $request->query('examSetupId');
 
+            $student = $user->students()->where('exam_setup_id', $examSetupId)->first();
 
-        // return view('student.upcomingexam.create', compact('examSetup', 'questions'));
+            $student->status = 'Completed';
+            $student->save();
+
+            toastr()->success("Exam Finished");
+            return redirect()->route('student.takenexam.index');
+        }
+
+        // Return back to the previous page with input and active question ID
         return redirect()->back()->withInput()->with('active_question', $request->question_id);
+    }
+
+    public function finish(Request $request)
+    {
+        $user = Auth::user(); // Assuming you're using Laravel's built-in authentication
+
+
+        $examSetupId = $request->id;
+
+        $student = $user->students()->where('exam_setup_id', $examSetupId)->first();
+
+        $student->status = 'Completed';
+        $student->save();
+
+        toastr()->success("Exam Finished");
+        return redirect()->route('student.takenexam.index');
     }
 
     public function submit(Request $request)
