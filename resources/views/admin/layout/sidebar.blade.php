@@ -54,8 +54,9 @@
 
             <li class="menu-header">User Management</li>
             <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Add User</span></a>
-                <ul class="dropdown-menu">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>User Management</span></a>
+                    <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('collegeForm') }}">Add College</a></li>
                     <li><a class="nav-link" href="{{ route('departmentForm') }}">Add Department</a></li>
                     <li><a class="nav-link" href="{{ route('coordinatorForm') }}">Add Exam Coordinator</a></li>

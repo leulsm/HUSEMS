@@ -86,13 +86,16 @@ Route::middleware(['auth', 'role:student'])->group(function () {
 Route::get('admin/college/form', [CollegeController::class, 'collegeForm'])->name('collegeForm');
 Route::post('admin/college/save', [CollegeController::class, 'storeCollege'])->name('storeCollege');
 Route::get('admin/college/list', [CollegeController::class, 'collegeList'])->name('collegeList');
+Route::get('admin/college/detail', [CollegeController::class, 'collegeDetail'])->name('collegeDetail');
+Route::get('admin/college/detail/{id}', [CollegeController::class, 'collegeDetail'])->name('college.detail');
+
 
 Route::get('admin/department/form', [DepartmentController::class, 'departmentForm'])->name('departmentForm');
 
 
 Route::get('admin/coordinator/form', [ExamCoordinatorController::class, 'coordinatorForm'])->name('coordinatorForm');
 Route::post('admin/department/save', [ExamCoordinatorController::class, 'storeCoordinator'])->name('storeCoordinator');
-
+Route::get('admin/department/list', [ExamCoordinatorController::class, 'coordinatorList'])->name('examCoordinatorList');
 
 Route::get('admin/Schedule/home', [ScheduleController::class, 'examList'])->name('examList');
 Route::get('admin/Schedule/create/{examSetupId}', [ScheduleController::class, 'showExamSetup'])->name('createSchedule');

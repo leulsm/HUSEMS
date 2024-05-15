@@ -98,7 +98,12 @@ class ExamCoordinatorController extends Controller
     }
 
 
+    function coordinatorList(){
 
+        $list = examCoordinator::all();
+
+        return view('admin.examCoordinator.examCoordinatorList',compact('list'));
+    }
 
 
     public function destroy(Request $request): RedirectResponse
