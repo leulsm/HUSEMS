@@ -37,12 +37,19 @@
                                 <td>{{ $item->last_name }}</td>
                                 <td>{{ $item->email }}</td>
                                 <td>
-                                    <div class="d-flex flex-wrap justify-content-center">
-                                        <a href="#" class="btn btn-primary mr-2" data-index="{{ $index }}">View Detail</a>
-                                        <a href="#" class="btn btn-success mr-2" data-index="{{ $index }}">Update</a>
-                                        <a href="#" class="btn btn-danger" data-index="{{ $index }}">Delete</a>
-                                    </div>
-                                </td>
+                                <div class="d-flex">
+                                    <a href="{{ route('examCoordinator.detail', $item->id) }}" class="btn btn-primary">View Detail</a>
+                                    <a href="{{ route('examCoordinator.edit', $item->id) }}" class="btn btn-success">Update</a>
+                                    <form method="POST" action="{{ route('examCoordinator.delete', $item->id)}}"
+                                        onsubmit="return confirm('Are you sure you want to delete this College?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-icon ml-2">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -56,7 +63,7 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         // View Detail button click event
@@ -95,4 +102,30 @@
             console.log('Delete:', firstName, lastName, email);
         });
     });
+</script> -->
+<script>
+    $(document).ready(function() {
+        // Define the table and search input elements
+        var table = $('#examCoordinator-table');
+        var searchInput = $('#search-input');
+
+        // Perform search when the search button is clicked
+        $('#search-button').on('click', function() {
+            var searchValue = searchInput.val().toLowerCase();
+
+            // Filter the table rows based on the search value
+            table.find('tbody tr').each(function() {
+                var row = $(this);
+                var collegeName = row.find('td:nth-child(2)').text().toLowerCase();
+                var collegeAbbreviation = row.find('td:nth-child(3)').text().toLowerCase();
+
+                if (collegeName.includes(searchValue) || collegeAbbreviation.includes(searchValue)) {
+                    row.show();
+                } else {
+                    row.hide();
+                }
+            });
+        });
+    });
 </script>
+

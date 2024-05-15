@@ -4,14 +4,14 @@
 
 <section class="section">
     <div class="section-header">
-        <h1>College List</h1>
+        <h1>Department List</h1>
     </div>
 
     <div class="card">
     <div class="card-body">
         <div class="table-responsive">
             <div class="d-flex justify-content-end mb-3">
-                <form method="GET" action="{{ route('college.search') }}">
+                <form method="GET" action="{{ route('department.search') }}">
                     <div class="input-group">
                         <input type="text" name="search" class="form-control form-control-sm" placeholder="Search">
                         <div class="input-group-append">
@@ -26,8 +26,8 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>College Name</th>
-                        <th>College Abbreviation</th>
+                        <th>Department Name</th>
+                        <th>Department Abbreviation</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -35,14 +35,14 @@
                     @foreach ($list as $index => $item)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $item->college_name }}</td>
-                            <td>{{ $item->college_abbreviation }}</td>
+                            <td>{{ $item->department_name }}</td>
+                            <td>{{ $item->department_abbreviation }}</td>
                             <td>
                                 <div class="d-flex">
-                                    <a href="{{ route('college.detail', $item->id) }}" class="btn btn-primary">View Detail</a>
-                                    <a href="{{ route('college.edit', $item->id) }}" class="btn btn-success">Update</a>
-                                    <form method="POST" action="{{ route('college.delete', $item->id)}}"
-                                        onsubmit="return confirm('Are you sure you want to delete this College?')">
+                                    <a href="{{ route('department.detail', $item->id) }}" class="btn btn-primary">View Detail</a>
+                                    <a href="{{ route('department.edit', $item->id) }}" class="btn btn-success">Update</a>
+                                    <form method="POST" action="{{ route('department.delete',$item->id)}}"
+                                        onsubmit="return confirm('Are you sure you want to delete this Department?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-icon ml-2">

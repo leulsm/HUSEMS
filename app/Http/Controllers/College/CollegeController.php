@@ -20,7 +20,7 @@ class CollegeController extends Controller
         $college->college_abbrivation = $request->input('college_abbrivation');
         $college->save();
 
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('collegeList')->with('success', 'College added successfully.');
     }
     function collegeList(){
         $list = college::all();
@@ -60,6 +60,17 @@ class CollegeController extends Controller
     $college = College::findOrFail($id);
     $college->delete();
 
-    return redirect()->route('college.detail', $college->id)->with('success', 'College deleted successfully.');
+    return redirect()->route('collegeList', $college->id)->with('success', 'College deleted successfully.');
 }
+
+    public function searchColleges(Request $request)
+    {
+        $searchValue = $request->input('search');
+
+        $colleges = College::where('college_name', 'LIKE', '%'.$searchValue.'%')->get();
+
+
+
+        return view('admin.college.collegeList', ['list' => $colleges]);
+    }
 }

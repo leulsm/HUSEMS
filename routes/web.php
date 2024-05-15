@@ -92,14 +92,45 @@ Route::get('admin/college/detail/{id}', [CollegeController::class, 'collegeDetai
 Route::get('admin/college/edit/{id}', [CollegeController::class, 'collegeEdit'])->name('college.edit');
 Route::put('admin/college/edit/{id}', [CollegeController::class, 'collegeUpdate'])->name('college.update');
 Route::delete('admin/college/delete/{id}', [CollegeController::class, 'destroyCollege'])->name('college.delete');
+Route::get('admin/college/search', [CollegeController::class, 'searchColleges'])->name('college.search');
 
 
-Route::get('admin/department/form', [DepartmentController::class, 'departmentForm'])->name('departmentForm');
 
 
+
+
+
+
+
+
+//Department
+//Route::get('admin/examCoordinator/form', [ExamCoordinatorController::class, 'departmentForm'])->name('departmentForm');
+Route::post('admin/examCoordinator/save', [ExamCoordinatorController::class, 'storeCoordinator'])->name('storeCoordinator');
 Route::get('admin/coordinator/form', [ExamCoordinatorController::class, 'coordinatorForm'])->name('coordinatorForm');
-Route::post('admin/department/save', [ExamCoordinatorController::class, 'storeCoordinator'])->name('storeCoordinator');
-Route::get('admin/department/list', [ExamCoordinatorController::class, 'coordinatorList'])->name('examCoordinatorList');
+Route::get('admin/examCoordinator/list', [ExamCoordinatorController::class, 'examCoordinatorList'])->name('examCoordinatorList');
+Route::get('admin/examCoordinator/detail', [ExamCoordinatorController::class, 'examCoordinatorDetail'])->name('examCoordinatorDetail');
+Route::get('admin/examCoordinator/detail/{id}', [ExamCoordinatorController::class, 'examCoordinatorDetail'])->name('examCoordinator.detail');
+Route::get('admin/examCoordinator/edit/{id}', [ExamCoordinatorController::class, 'examCoordinatorEdit'])->name('examCoordinator.edit');
+Route::put('admin/examCoordinator/edit/{id}', [ExamCoordinatorController::class, 'examCoordinatorUpdate'])->name('examCoordinator.update');
+Route::delete('admin/examCoordinator/delete/{id}', [ExamCoordinatorController::class, 'destroyExamCoordinator'])->name('examCoordinator.delete');
+Route::get('admin/examCoordinator/search', [ExamCoordinatorController::class, 'searcExamCoordinator'])->name('examCoordinator.search');
+
+
+
+
+
+//Department Routes
+Route::get('admin/department/form', [DepartmentController::class, 'departmentForm'])->name('departmentForm');
+Route::get('admin/department/list', [DepartmentController::class, 'departmentList'])->name('departmentList');
+Route::get('admin/department/detail', [DepartmentController::class, 'departmentDetail'])->name('departmentDetail');
+Route::get('admin/department/detail/{id}', [DepartmentController::class, 'departmentDetail'])->name('department.detail');
+Route::get('admin/department/edit/{id}', [DepartmentController::class, 'departmentEdit'])->name('department.edit');
+Route::put('admin/department/edit/{id}', [DepartmentController::class, 'departmentUpdate'])->name('department.update');
+Route::delete('admin/department/delete/{id}', [DepartmentController::class, 'destroyDepartment'])->name('department.delete');
+Route::get('admin/department/search', [DepartmentController::class, 'searchDepartment'])->name('department.search');
+
+
+
 
 Route::get('admin/Schedule/home', [ScheduleController::class, 'examList'])->name('examList');
 Route::get('admin/Schedule/create/{examSetupId}', [ScheduleController::class, 'showExamSetup'])->name('createSchedule');

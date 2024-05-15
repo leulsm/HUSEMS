@@ -98,7 +98,7 @@ class ExamCoordinatorController extends Controller
     }
 
 
-    function coordinatorList(){
+    function examCoordinatorList(){
 
         $list = examCoordinator::all();
 
@@ -116,4 +116,62 @@ class ExamCoordinatorController extends Controller
 
         return redirect('/');
     }
+
+
+
+    function examCoordinatorDetail(string $id){
+        $examCoordinator = ExamCoordinator::findOrFail($id);
+        //$examSetupId = $student->exam_setup_id;
+        return view('admin.examCoordinator.examCoordinatordetail',compact('examCoordinator'));
+
+    }
+    function examCoordinatorEdit(string $id){
+        $examCoordinator = ExamCoordinator::findOrFail($id);
+        //$examSetupId = $student->exam_setup_id;
+        return view('admin.examCoordinator.examCoordinatoredit',compact('examCoordinator'));
+
+    }
+    function examCoordinatorUpdate(Request $request, string $id)
+    {
+    $examCoordinator = ExamCoordinator::findOrFail($id);
+
+    $request->validate([
+        'first_name' => 'required|string',
+        'last_name' => 'required|string',
+        'email' => 'required|email',
+        'phone' => 'required|string',
+    ]);
+
+    $examCoordinator->first_name = $request->input('first_name');
+    $examCoordinator->last_name = $request->input('last_name');
+    $examCoordinator->email = $request->input('email');
+    $examCoordinator->phone = $request->input('phone');
+    $examCoordinator->save();
+
+    return redirect()->route('examCoordinator.detail', $examCoordinator->id);
+    }
+
+    public function destroyexamCoordinator(string $id)
+{
+    $examCoordinator = ExamCoordinator::findOrFail($id);
+    $examCoordinator->delete();
+
+    return redirect()->route('examCoordinatorList', $examCoordinator->id)->with('success', 'Exam Coordinator deleted successfully.');
 }
+
+    public function searchExamCoordinator(Request $request)
+    {
+        $searchValue = $request->input('search');
+
+        $examCoordinator = ExamCoordinator::where('first_name', 'LIKE', '%'.$searchValue.'%')->get();
+
+
+
+        return view('admin.examCoordinator.examCoordinatorList', ['list' => $examCoordinator]);
+    }
+}
+
+
+
+
+

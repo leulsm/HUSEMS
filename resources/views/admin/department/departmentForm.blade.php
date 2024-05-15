@@ -5,7 +5,7 @@
         <div class="section-header">
             <h1>Department Registration</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#" class="btn btn-info">Department List</a>
+                <div class="breadcrumb-item active"><a href="{{ route('departmentList') }}" class="btn btn-info">Department List</a>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="card-footer text-center">
                                     <button class="btn btn-primary">Register</button>
->>>>>>> 52ba533c9317b38ed06b1492d66ab4b58a4a15aa
+
                                 </div>
                                 </div>
 

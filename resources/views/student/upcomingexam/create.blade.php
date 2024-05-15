@@ -303,6 +303,33 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('admin/assets/js/page/forms-advanced-forms.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    {{--
+        <script>
+    // Disable right-click
+window.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+});
+
+// Disable text selection
+window.addEventListener('selectstart', function (e) {
+  e.preventDefault();
+});
+
+// Disable copying via keyboard shortcuts
+window.addEventListener('keydown', function (e) {
+  // Check for Ctrl/Cmd key and C key
+  if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+    e.preventDefault();
+  }
+});
+</script>
+
+        -- }}
+<
+
+
     {{-- <script>
         $(document).ready(function() {
             var examEndTime = localStorage.getItem('examEndTime');

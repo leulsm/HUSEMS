@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="section-body">
-        <form method="POST" action="{{ route('college.update', $college->id) }}">
+        <form method="POST" action="{{ route('examCoordinator.update', $examCoordinator->id) }}">
             @csrf
             @method('PUT')
 
@@ -18,16 +18,16 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="invoice-title">
-                                <label for="college_name">College Name</label>
-                                <input type="text" class="form-control" name="college_name" value="{{ $college->college_name }}" required>
-                                <div class="invoice-number">College #{{ $college->id }}</div>
+                                <label for="first_name">First Name</label>
+                                <input type="text" class="form-control" name="first_name" value="{{ $examCoordinator->first_name }}" required>
+                                <div class="invoice-number">Exam Coordinator #{{ $examCoordinator->id }}</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="college_abbrivation">College Abbreviation</label>
-                                    <input type="text" class="form-control" name="college_abbrivation"
-                                        value="{{ $college->college_abbrivation }}" required>
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" class="form-control" name="last_name"
+                                        value="{{ $examCoordinator->last_name }}" required>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <button type="submit" class="btn btn-primary btn-icon icon-left text-white">
-                                    <i class="fas fa-edit"></i> Update College
+                                    <i class="fas fa-edit"></i> Update
                                 </button>
                             </div>
                         </div>
