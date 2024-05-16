@@ -15,9 +15,10 @@
                     </div>
                 </div>
             </div>
+            </div>
       
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var chartLabels = @json($chartLabels);
