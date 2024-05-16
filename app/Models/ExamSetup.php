@@ -36,4 +36,19 @@ class ExamSetup extends Model
     {
         return $this->hasOne(Schedule::class);
     }
+
+    public function invigilator()
+    {
+        return $this->hasOne(Invigilator::class);
+    }
+
+    public function examPrePass()
+    {
+        return $this->hasOne(ExamPrePass::class);
+    }
+
+    public function cheatReports()
+    {
+        return $this->hasMany(CheatReport::class);
+    }
 }

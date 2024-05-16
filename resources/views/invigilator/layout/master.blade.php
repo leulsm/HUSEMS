@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <link rel="icon" href="{{ asset('admin/assets/img/logo/logo.png') }}">
     <title>HUSEMS</title>
 
     <!-- General CSS Files -->
@@ -24,6 +23,10 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
 
@@ -45,7 +48,7 @@
         <div class="main-wrapper main-wrapper-1">
             <div class="navbar-bg"></div>
             <!-- Sidebar -->
-            @include('student.layout.sidebar')
+            @include('invigilator.layout.sidebar')
             <!-- Main Content -->
             <div class="main-content">
                 @yield('content')
@@ -76,7 +79,6 @@
     <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
     <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
     {{-- <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.min.css') }}"> --}}
-    <script src="{{ asset('admin/assets/js/page/bootstrap-modal.js') }}"></script>
 
     <!-- General JS Scripts -->
     <script src="{{ asset('admin/assets/modules/moment.min.js') }}"></script>
@@ -91,9 +93,15 @@
     <script src="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     {{-- <script src="{{ asset('admin/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script> --}}
+
+    {{-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> --}}
     <script src="https://kit.fontawesome.com/67ef4e65d8.js" crossorigin="anonymous"></script>
+
     <!-- Page Specific JS File -->
     <script src="{{ asset('admin/assets/js/page/forms-advanced-forms.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
     <script>
         toastr.options.progressBar = true;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Student\SubmitQuestionRequest;
+use App\Models\ExamPrePass;
 use App\Models\ExamSetup;
 use App\Models\ExamTaken;
 use App\Models\Question;
@@ -15,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
+use Illuminate\Support\Facades\Log;
 
 class UpcomingExamController extends Controller
 {
@@ -237,5 +239,26 @@ class UpcomingExamController extends Controller
         $remainingTime = $currentTime->diffInSeconds($startTime, false);
 
         return view('student.upcomingexam.show', compact('examSetup', 'remainingTime', 'start_time', 'currentTime'));
+    }
+
+    public function validateExamPassword(Request $request)
+    {
+
+        $request->validate([
+            'examSetupId' => 'required|exists:exam_pre_passes,exam_setup_id',
+            'password' => 'required'
+        ]);
+
+        Log::info('ExamSetupId:', ['examSetupId' => $request->examSetupId]); // Log the examSetupId
+        Log::info('Password:', ['password' => $request->password]); // Log the password
+
+        $examPrePass = ExamPrePass::where('exam_setup_id', $request->examSetupId)->first();
+        Log::info('ExamPrePass:', ['examPrePass' => $examPrePass]); // Log the fetched ExamPrePass record
+
+        if ($examPrePass && $examPrePass->exam_password === $request->password) {
+            return response()->json(['valid' => true]);
+        } else {
+            return response()->json(['valid' => false]);
+        }
     }
 }

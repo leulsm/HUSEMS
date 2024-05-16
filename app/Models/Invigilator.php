@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Invigilator extends Model
 {
     use HasFactory;
 
@@ -26,7 +26,12 @@ class Student extends Model
 
     public function examSetup()
     {
-        return $this->belongsToMany(ExamSetup::class);
+        return $this->belongsTo(ExamSetup::class);
+    }
+
+    public function examPrePass()
+    {
+        return $this->hasOne(ExamPrePass::class);
     }
 
     public function cheatReports()

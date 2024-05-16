@@ -419,6 +419,50 @@ window.addEventListener('keydown', function (e) {
     </script> --}}
     {{-- //////////heyyyyyyyyyyyyyyyy --}}
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startButton = document.getElementById('start-button');
+            const passwordModal = $('#passwordModal');
+            const passwordForm = document.getElementById('passwordForm');
+            const errorMessage = document.getElementById('error-message');
+
+            startButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                passwordModal.modal('show');
+            });
+
+            passwordForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                errorMessage.style.display = 'none';
+
+                const examPassword = document.getElementById('examPassword').value;
+                const examSetupId = "{{ $examSetup->id }}"; // Use Blade to inject the ID
+
+                fetch('{{ route('student.validateExamPassword') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                .getAttribute('content')
+                        },
+                        body: JSON.stringify({
+                            examSetupId: examSetupId,
+                            examPassword: examPassword
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.valid) {
+                            window.location.href =
+                                "{{ route('student.upcomingexam.create', ['examSetupId' => $examSetup->id]) }}";
+                        } else {
+                            errorMessage.style.display = 'block';
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+    <script>
         // Function to update the remaining time display
         function updateRemainingTime() {
             // Retrieve the remaining time from local storage or set it to the initial value
