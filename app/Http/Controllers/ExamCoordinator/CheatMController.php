@@ -43,10 +43,10 @@ class CheatMController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store($id)
+    public function store(Request $request)
     {
         //
-        $cheatReport = CheatReport::findOrFail($id);
+        $cheatReport = CheatReport::findOrFail($request->id);
 
         // Assuming there's a relationship between CheatReport and Student
         $student = $cheatReport->student;

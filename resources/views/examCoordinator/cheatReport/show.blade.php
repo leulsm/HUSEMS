@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="col-6">
-                        <form method="POST" action="{{ route('cheatM.store', $cheatreport->id) }}"
+                        <form method="POST" action="{{ route('cheatM.store', ['id' => $cheatreport->id]) }}"
                             onsubmit="return confirm('Are you sure you want to suspend student exam?')">
                             @csrf
 
