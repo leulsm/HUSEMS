@@ -36,6 +36,8 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(RouteServiceProvider::EXAMCOORDINATOR);
         } elseif ($user->hasRole('student')) {
             return redirect()->intended(RouteServiceProvider::STUDENT);
+        } elseif ($user->hasRole('invigilator')) {
+            return redirect()->intended(RouteServiceProvider::INVIGILATOR);
         }
         // return redirect()->intended(RouteServiceProvider::HOME);
         return redirect()->back();

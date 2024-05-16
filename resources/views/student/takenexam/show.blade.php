@@ -47,45 +47,53 @@
                 </div>
 
             </div>
+            @if ($student->status == 'Cheated')
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1>Suspended from this exam</h1>
 
-            <div class="row">
-                <div class="col-12 col-md-4 col-lg-4">
-                    <div class="pricing pricing-highlight">
-                        <div class="pricing-title">
-                            Your Score
+                    </div>
+                </div>
+            @else
+                <div class="row">
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <div class="pricing pricing-highlight">
+                            <div class="pricing-title">
+                                Your Score
+                            </div>
+                            <div class="pricing-padding">
+                                <div class="pricing-price">
+                                    <div>{{ $totalScore }}/{{ $examSetup->total_mark }}</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="pricing-padding">
-                            <div class="pricing-price">
-                                <div>{{ $totalScore }}/{{ $examSetup->total_mark }}</div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <div class="pricing pricing-highlight">
+                            <div class="pricing-title">
+                                Persontage Score
+                            </div>
+                            <div class="pricing-padding">
+                                <div class="pricing-price">
+                                    <div>{{ $percentage }}%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <div class="pricing pricing-highlight">
+                            <div class="pricing-title">
+                                Status
+                            </div>
+                            <div class="pricing-padding">
+                                <div class="pricing-price">
+                                    <div>{{ $status }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 col-lg-4">
-                    <div class="pricing pricing-highlight">
-                        <div class="pricing-title">
-                            Persontage Score
-                        </div>
-                        <div class="pricing-padding">
-                            <div class="pricing-price">
-                                <div>{{ $percentage }}%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 col-lg-4">
-                    <div class="pricing pricing-highlight">
-                        <div class="pricing-title">
-                            Status
-                        </div>
-                        <div class="pricing-padding">
-                            <div class="pricing-price">
-                                <div>{{ $status }}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endif
         </div>
     </section>
 @endsection

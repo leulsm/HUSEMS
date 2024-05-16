@@ -21,7 +21,7 @@ class TakenExamController extends Controller
 
         $examSetups = ExamSetup::whereHas('students', function ($query) use ($user) {
             $query->where('user_id', $user->id)
-                ->where('status', 'Completed');
+                ->whereIn('status', ['Completed', 'Cheated']);
         })
             ->get();
         return view('student.takenexam.index', compact('examSetups'));
@@ -53,6 +53,10 @@ class TakenExamController extends Controller
         //         $correctAnswersCount++;
         //     }
         // }
+        // $student= Student::where('stud')
+        $student = Student::where('user_id', $studentId)
+            ->where('exam_setup_id', $examSetup->id)
+            ->firstOrFail();
 
         // $percentageCorrect = ($correctAnswersCount / $totalQuestions) * 100;
         $examSetup = ExamSetup::findOrFail($id);
@@ -99,6 +103,6 @@ class TakenExamController extends Controller
         // Calculate the result as a percentage
         $percentage = $maxScore > 0 ? ($totalScore / $maxScore) * 100 : 0;
 
-        return view('student.takenexam.show', compact('examSetup', 'totalScore', 'status', 'percentage'));
+        return view('student.takenexam.show', compact('examSetup', 'totalScore', 'status', 'percentage', 'student'));
     }
 }
