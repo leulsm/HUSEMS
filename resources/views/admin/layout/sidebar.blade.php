@@ -36,9 +36,12 @@
 </nav>
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
-        <div class="sidebar-brand">
-            <a href="#">Husems</a>
-        </div>
+    <div class="sidebar-brand">
+    <a href="#">
+        <img src="{{ asset('admin/assets/img/logo/logo.png') }}" alt="Logo" width="40" height="40">
+        Husems
+    </a>
+</div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="">Hu</a>
         </div>
