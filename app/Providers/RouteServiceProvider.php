@@ -21,6 +21,9 @@ class RouteServiceProvider extends ServiceProvider
     public const ADMIN = 'admin/dashboard';
     public const STUDENT = 'student/upcomingexam/index';
     public const EXAMCOORDINATOR = 'examCoordinator/dashboard';
+    public const INVIGILATOR = 'invigilator/assigned/index';
+
+
 
 
     /**

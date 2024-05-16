@@ -14,6 +14,8 @@ use App\Http\Controllers\Student\UpcomingExamController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\College\CollegeController;
 use App\Http\Controllers\Department\DepartmentController;
+use App\Http\Controllers\ExamCoordinator\InvigilatorController;
+use App\Http\Controllers\Invigilator\AssignedExamController;
 use App\Http\Controllers\Schedule\ScheduleController;
 // use App\Http\Controllers\Student\StudentProfileController;
 
@@ -59,6 +61,7 @@ Route::middleware(['auth', 'role:examCoordinator'])->group(function () {
     Route::resource('answerChoiceManagement', AnswerChoiceController::class);
     Route::resource('studentManagement', StudentC::class);
     Route::resource('profileManagement', ProfileC::class);
+    Route::resource('invigilatorManagement', InvigilatorController::class);
     Route::post('examCoordinator/student/storebulk', [StudentC::class, 'storebulk'])->name('examCoordinator.student.storebulk');;
 });
 
@@ -141,7 +144,15 @@ Route::get('admin/Schedule/delete/{id}', [ScheduleController::class, 'delete'])-
 
 //Route::post('/exam-setups/{examSetupId}', 'ScheduleController@showExamSetup')->name('createSchedule');
 
+Route::middleware(['auth', 'role:invigilator'])->group(function () {
+    // Routes accessible to users with the 'admin' role
+    // Route::get('student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
+    Route::get('invigilator/assigned/index', [AssignedExamController::class, 'index'])->name('invigilator.assigned.index');
+    Route::get('invigilator/assigned/show/{id}', [AssignedExamController::class, 'show'])->name('invigilator.assigned.show');
 
+
+    //
+});
 
 
 require __DIR__ . '/auth.php';

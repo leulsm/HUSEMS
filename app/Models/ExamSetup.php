@@ -36,4 +36,9 @@ class ExamSetup extends Model
     {
         return $this->hasOne(Schedule::class);
     }
+
+    public function invigilator()
+    {
+        return $this->hasOne(Invigilator::class);
+    }
 }
