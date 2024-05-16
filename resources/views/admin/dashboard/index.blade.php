@@ -21,7 +21,7 @@
                             <h4>Total Admin</h4>
                         </div>
                         <div class="card-body">
-                            100
+                            1
                         </div>
                     </div>
                 </div>
@@ -33,10 +33,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>News</h4>
+                            <h4>Total Colleges</h4>
                         </div>
                         <div class="card-body">
-                            42
+                            3
                         </div>
                     </div>
                 </div>
@@ -48,10 +48,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Reports</h4>
+                            <h4>Total Coordinator</h4>
                         </div>
                         <div class="card-body">
-                            1,201
+                            5
                         </div>
                     </div>
                 </div>
@@ -63,10 +63,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Online Users</h4>
+                            <h4>Total Exam Setup</h4>
                         </div>
                         <div class="card-body">
-                            47
+                            4
                         </div>
                     </div>
                 </div>

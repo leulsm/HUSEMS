@@ -111,7 +111,7 @@
     <script src="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     {{-- <script src="{{ asset('admin/assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script> --}}
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Page Specific JS File -->
     <script src="{{ asset('admin/assets/js/page/forms-advanced-forms.js') }}"></script>
     @stack('scripts')

@@ -60,10 +60,7 @@
                         <label>Select Starting Date</label>
                         <input type="text" class="form-control datetimepicker " name="starting_date">
                     </div>
-                    <div class="form-group">
-                        <label>Date Time Picker</label>
-                        <input type="text" class="form-control datetimepicker " name="ending_date">
-                    </div>
+                    
 
 
 
