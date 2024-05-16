@@ -1,47 +1,53 @@
 @extends('admin.layout.master')
 
 @section('content')
+
 <section class="section">
     <div class="section-header">
-        <h1>College List</h1>
+        <h1>Exam Coordinator List</h1>
+        <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{ route('coordinatorForm') }}">Add Exam Coordinator</a></div>
+                <div class="breadcrumb-item active">Exam Coodrinator list</div>
+        </div>
     </div>
 
     <div class="card">
-        <div class="card-body">
-            <div class="table-responsive d-flex flex-column">
-                <div class="d-flex justify-content-end mb-3">
+    <div class="card-body">
+        <div class="table-responsive">
+            <div class="d-flex justify-content-end mb-3">
+                <form method="GET" action="{{ route('examCoordinator.search') }}">
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" placeholder="Search">
+                        <input type="text" name="search" class="form-control form-control-sm" placeholder="Search">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-primary" type="submit">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
                     </div>
-                </div>
-                <table class="table table-bordered table-md">
-                    <thead>
+                </form>
+            </div>
+            <table class="table table-bordered table-md">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Exam Coordinator First Name</th>
+                        <th>Exam Coordinator Last Name </th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($list as $index => $item)
                         <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($list as $index => $item)
-                            <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $item->first_name }}</td>
-                                <td>{{ $item->last_name }}</td>
-                                <td>{{ $item->email }}</td>
-                                <td>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $item->first_name }}</td>
+                            <td>{{ $item->last_name }}</td>
+                            <td>
                                 <div class="d-flex">
                                     <a href="{{ route('examCoordinator.detail', $item->id) }}" class="btn btn-primary">View Detail</a>
-                                    <a href="{{ route('examCoordinator.edit', $item->id) }}" class="btn btn-success">Update</a>
+                                    <a href="{{ route('examCoordinator.update', $item->id) }}" class="btn btn-success">Update</a>
                                     <form method="POST" action="{{ route('examCoordinator.delete', $item->id)}}"
-                                        onsubmit="return confirm('Are you sure you want to delete this College?')">
+                                        onsubmit="return confirm('Are you sure you want to delete this Coordinator?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-icon ml-2">
@@ -50,63 +56,21 @@
                                     </form>
                                 </div>
                             </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 </section>
 
-@endsection
 
 
-
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // View Detail button click event
-        $('.view-detail').click(function(e) {
-            e.preventDefault();
-            var row = $(this).closest('tr');
-            var firstName = row.find('td:nth-child(2)').text();
-            var lastName = row.find('td:nth-child(3)').text();
-            var email = row.find('td:nth-child(4)').text();
-
-            // Perform actions with the data (e.g., show a modal with details)
-            console.log('View Detail:', firstName, lastName, email);
-        });
-
-        // Update button click event
-        $('.update').click(function(e) {
-            e.preventDefault();
-            var row = $(this).closest('tr');
-            var firstName = row.find('td:nth-child(2)').text();
-            var lastName = row.find('td:nth-child(3)').text();
-            var email = row.find('td:nth-child(4)').text();
-
-            // Perform actions with the data (e.g., redirect to update page)
-            console.log('Update:', firstName, lastName, email);
-        });
-
-        // Delete button click event
-        $('.delete').click(function(e) {
-            e.preventDefault();
-            var row = $(this).closest('tr');
-            var firstName = row.find('td:nth-child(2)').text();
-            var lastName = row.find('td:nth-child(3)').text();
-            var email = row.find('td:nth-child(4)').text();
-
-            // Perform actions with the data (e.g., show a confirmation dialog)
-            console.log('Delete:', firstName, lastName, email);
-        });
-    });
-</script> -->
 <script>
     $(document).ready(function() {
         // Define the table and search input elements
-        var table = $('#examCoordinator-table');
+        var table = $('#college-table');
         var searchInput = $('#search-input');
 
         // Perform search when the search button is clicked
@@ -128,4 +92,8 @@
         });
     });
 </script>
+
+
+@endsection
+
 

@@ -68,6 +68,7 @@ class CollegeController extends Controller
         $searchValue = $request->input('search');
 
         $colleges = College::where('college_name', 'LIKE', '%'.$searchValue.'%')->get();
+        $colleges = College::where('college_abbrivation', 'LIKE', '%'.$searchValue.'%')->get();
 
 
 

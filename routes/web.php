@@ -111,9 +111,10 @@ Route::get('admin/examCoordinator/list', [ExamCoordinatorController::class, 'exa
 Route::get('admin/examCoordinator/detail', [ExamCoordinatorController::class, 'examCoordinatorDetail'])->name('examCoordinatorDetail');
 Route::get('admin/examCoordinator/detail/{id}', [ExamCoordinatorController::class, 'examCoordinatorDetail'])->name('examCoordinator.detail');
 Route::get('admin/examCoordinator/edit/{id}', [ExamCoordinatorController::class, 'examCoordinatorEdit'])->name('examCoordinator.edit');
+//Route::put('admin/examCoordinator/edit/{id}', [ExamCoordinatorController::class, 'examCoordinatorUpdate'])->name('examCoordinator.update');
 Route::put('admin/examCoordinator/edit/{id}', [ExamCoordinatorController::class, 'examCoordinatorUpdate'])->name('examCoordinator.update');
 Route::delete('admin/examCoordinator/delete/{id}', [ExamCoordinatorController::class, 'destroyExamCoordinator'])->name('examCoordinator.delete');
-Route::get('admin/examCoordinator/search', [ExamCoordinatorController::class, 'searcExamCoordinator'])->name('examCoordinator.search');
+Route::get('admin/examCoordinator/search', [ExamCoordinatorController::class, 'searchExamCoordinator'])->name('examCoordinator.search');
 
 
 

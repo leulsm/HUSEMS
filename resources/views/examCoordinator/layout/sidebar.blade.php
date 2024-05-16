@@ -48,7 +48,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="active"><a class="nav-link" href="{{ route('examCoordinator.dashboard') }}"><i
-                        class="fas fa-fire"></i><span>
+                        class="fas fa-book"></i><span>
                         Dashboard</span></a>
             </li>
             {{-- <li><a class="nav-link" href="{{ route('examManagement.index') }}"><i class="fa-solid fa-pen"></i>

@@ -14,16 +14,16 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="invoice-title">
-                            <h2>Department Name: {{ $examCoordinator->first_name }}</h2>
-                            <div class="invoice-number">Department #{{ $examCoordinator->id }}</div>
+                            <h2>ExamCoordinator Name: {{ $examCoordinator->first_name }}</h2>
+                            <div class="invoice-number">ExamCoordinator #{{ $examCoordinator->id }}</div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
                                 <address>
-                                    <strong>Department Abbreviation:</strong><br>
+                                    <strong>ExamCoordinator Abbreviation:</strong><br>
                                     {{ $examCoordinator->last_name }}<br>
-                                    <strong>Number of Coordinator:</strong><br>
+                                    <strong>Number of ExamCoordinator:</strong><br>
                                 </address>
                             </div>
                         </div>
@@ -45,11 +45,11 @@
                         <div class="col-6">
                             <a href="{{ route('examCoordinator.edit', $examCoordinator->id) }}"
                                 class="btn btn-primary btn-icon icon-left text-white"><i class="fas fa-edit"></i>Edit
-                                </a>
+                                ExamCoordinator</a>
                         </div>
                         <div class="col-6">
                             <form method="POST" action="{{ route('examCoordinator.delete', $examCoordinator->id) }}"
-                                onsubmit="return confirm('Are you sure you want to delete this Exam Coordinator?')">
+                                onsubmit="return confirm('Are you sure you want to delete this examCoordinator?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-icon">

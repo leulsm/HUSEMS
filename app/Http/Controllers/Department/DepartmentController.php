@@ -77,6 +77,7 @@ class DepartmentController extends Controller
         $searchValue = $request->input('search');
 
         $department = Department::where('department_name', 'LIKE', '%'.$searchValue.'%')->get();
+        $department = Department::where('department_abbrivation', 'LIKE', '%'.$searchValue.'%')->get();
 
 
 
