@@ -58,9 +58,12 @@
 </nav>
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
-        <div class="sidebar-brand">
-            <a href="#">Husems</a>
-        </div>
+    <div class="sidebar-brand">
+    <a href="#">
+        <img src="{{ asset('admin/assets/img/logo/logo.png') }}" alt="Logo" width="40" height="40">
+        Husems
+    </a>
+</div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="">Hu</a>
         </div>
@@ -69,24 +72,24 @@
             {{-- <li class="menu-header">Dashboard</li> --}}
 
             <li class="active"><a class="nav-link" href="{{ route('admin.dashboard') }}"><i
-                        class="fas fa-fire"></i><span>General
+                        class="fas fa-book"></i><span>General
                         Dashboard</span></a>
             </li>
 
 
-            <li class="menu-header">User Management</li>
+            <li class="menu-header"><strong>User Management</strong></li>
             <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i>
                     <span>User Management</span></a>
                     <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('collegeForm') }}">Add College</a></li>
-                    <li><a class="nav-link" href="{{ route('departmentForm') }}">Add Department</a></li>
-                    <li><a class="nav-link" href="{{ route('coordinatorForm') }}">Add Exam Coordinator</a></li>
+                    <li><a class="nav-link" href="{{ route('collegeForm') }}"><strong>Add College</strong></a></li>
+                    <li><a class="nav-link" href="{{ route('departmentForm') }}"><strong>Add Department</strong></a></li>
+                    <li><a class="nav-link" href="{{ route('coordinatorForm') }}"><strong>Add Exam Coordinator</strong></a></li>
                 </ul>
             </li>
-            <li class="main-header"><a class="nav-link">Schedule For Exam </a></li>
+            <!-- <li class="main-header"><a class="nav-link">Schedule For Exam </a></li> -->
             <li class="active"><a class="nav-link" href="{{ route('examList') }}"><i
-                        class="fas fa-fire"></i><span>Schedule For Exam</span></a>
+                        class="fas fa-clock"></i><span><strong>Schedule For Exam</strong></span></a>
             </li>
 
             {{-- <li class="menu-header">Starter</li>

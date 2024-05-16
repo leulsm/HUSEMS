@@ -4,7 +4,7 @@
 {{-- <div class="main-content"> --}}
     <section class="section">
         <div class="section-header">
-            <h1>Exam Coordinator Registration</h1>
+            <h1>College Registration</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('collegeList') }}" class="btn btn-info">College List</a>
                 </div>

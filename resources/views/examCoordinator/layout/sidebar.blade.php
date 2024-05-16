@@ -39,7 +39,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="#">Husems</a>
+        <a href="#">
+        <img src="{{ asset('admin/assets/img/logo/logo.png') }}" alt="Logo" width="40" height="40">
+        Husems
+    </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="">Hu</a>
@@ -48,27 +51,24 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="active"><a class="nav-link" href="{{ route('examCoordinator.dashboard') }}"><i
-                        class="fas fa-fire"></i><span>
+                        class="fas fa-book"></i><span>
                         Dashboard</span></a>
             </li>
-            {{-- <li><a class="nav-link" href="{{ route('examManagement.index') }}"><i class="fa-solid fa-pen"></i>
-                    <span>Exam Management</span></a>
-            </li> --}}
             <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span>Exam Management</span></a>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-book"></i>
+                    <span><strong>Exam Management</strong></span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('examManagement.index') }}">Exam Setup</a></li>
+                    <li><a class="nav-link" href="{{ route('examManagement.index') }}"><strong>Exam Setup</strong></a></li>
                     <li><a class="nav-link" href="{{ route('questionManagement.index') }}">Question</a></li>
                     <li><a class="nav-link" href="{{ route('answerChoiceManagement.index') }}">Answer Options</a></li>
 
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span>Student Management</span></a>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i>
+                    <span><strong>Student Management</strong></span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('studentManagement.index') }}">Add Student</a></li>
+                    <li><a class="nav-link" href="{{ route('studentManagement.index') }}"><strong>Add Student</strong></a></li>
                 </ul>
             </li>
         </ul>

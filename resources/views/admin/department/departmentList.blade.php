@@ -5,6 +5,11 @@
 <section class="section">
     <div class="section-header">
         <h1>Department List</h1>
+        <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item "><a href="{{ route('admin.dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{ route('departmentForm') }}">Add Department</a></div>
+                <div class="breadcrumb-item active">DepartmentList</div>
+        </div>
     </div>
 
     <div class="card">
@@ -36,7 +41,7 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $item->department_name }}</td>
-                            <td>{{ $item->department_abbreviation }}</td>
+                            <td>{{ $item->department_abbrivation }}</td>
                             <td>
                                 <div class="d-flex">
                                     <a href="{{ route('department.detail', $item->id) }}" class="btn btn-primary">View Detail</a>

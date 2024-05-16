@@ -131,24 +131,24 @@ class ExamCoordinatorController extends Controller
         return view('admin.examCoordinator.examCoordinatoredit',compact('examCoordinator'));
 
     }
-    function examCoordinatorUpdate(Request $request, string $id)
+    public function examCoordinatorUpdate(Request $request, string $id)
     {
-    $examCoordinator = ExamCoordinator::findOrFail($id);
+        $examCoordinator = ExamCoordinator::findOrFail($id);
 
-    $request->validate([
-        'first_name' => 'required|string',
-        'last_name' => 'required|string',
-        'email' => 'required|email',
-        'phone' => 'required|string',
-    ]);
+        $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|email',
+            'phone' => 'required|string',
+        ]);
 
-    $examCoordinator->first_name = $request->input('first_name');
-    $examCoordinator->last_name = $request->input('last_name');
-    $examCoordinator->email = $request->input('email');
-    $examCoordinator->phone = $request->input('phone');
-    $examCoordinator->save();
+        $examCoordinator->first_name = $request->input('first_name');
+        $examCoordinator->last_name = $request->input('last_name');
+        $examCoordinator->email = $request->input('email');
+        $examCoordinator->phone = $request->input('phone');
+        $examCoordinator->save();
 
-    return redirect()->route('examCoordinator.detail', $examCoordinator->id);
+        return redirect()->route('examCoordinatorList')->with('success', 'ExamCoordinator updated successfully.');
     }
 
     public function destroyexamCoordinator(string $id)
@@ -159,16 +159,17 @@ class ExamCoordinatorController extends Controller
     return redirect()->route('examCoordinatorList', $examCoordinator->id)->with('success', 'Exam Coordinator deleted successfully.');
 }
 
-    public function searchExamCoordinator(Request $request)
-    {
-        $searchValue = $request->input('search');
+public function searchExamCoordinator(Request $request)
+{
+    $searchValue = $request->input('search');
 
-        $examCoordinator = ExamCoordinator::where('first_name', 'LIKE', '%'.$searchValue.'%')->get();
+    $examCoordinator = ExamCoordinator::where('first_name', 'LIKE', '%'.$searchValue.'%')->get();
+    $examCoordinator = ExamCoordinator::where('last_name', 'LIKE', '%'.$searchValue.'%')->get();
 
 
 
-        return view('admin.examCoordinator.examCoordinatorList', ['list' => $examCoordinator]);
-    }
+    return view('admin.examCoordinator.examCoordinatorList', ['list' => $examCoordinator]);
+}
 }
 
 
