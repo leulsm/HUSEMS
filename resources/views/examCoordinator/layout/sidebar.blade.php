@@ -66,6 +66,7 @@
                                 Options</strong></a></li>
 
                 </ul>
+
             </li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i>
