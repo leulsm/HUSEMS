@@ -28,4 +28,9 @@ class Student extends Model
     {
         return $this->belongsToMany(ExamSetup::class);
     }
+
+    public function cheatReports()
+    {
+        return $this->hasMany(CheatReport::class);
+    }
 }

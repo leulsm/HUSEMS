@@ -78,6 +78,12 @@
                     <li><a class="nav-link" href="{{ route('invigilatorManagement.index') }}">Add Invigilator</a></li>
                 </ul>
             </li>
+
+
+            <li class=""><a class="nav-link" href="{{ route('cheatM.index') }}"><i
+                        class="fas fa-columns"></i><span>
+                        Cheat Reports</span></a>
+            </li>
         </ul>
     </aside>
 </div>

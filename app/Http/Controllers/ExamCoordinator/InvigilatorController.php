@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ExamCoordinator;
 
 use App\Http\Controllers\Controller;
 use App\Mail\InvigilatorMail;
+use App\Models\ExamPrePass;
 use App\Models\ExamSetup;
 use App\Models\Invigilator;
 use App\Models\User;
@@ -57,7 +58,7 @@ class InvigilatorController extends Controller
         $user = User::where('email', $request->email)->first();
         // dd($user);
         if ($user) {
-            // $password = str::random(8);
+            $ExampasswordPass = str::random(8);
 
             $invigilator = new Invigilator();
             $invigilator->user_id = $user->id;
@@ -67,6 +68,14 @@ class InvigilatorController extends Controller
             $invigilator->phone = $request->phone;
             $invigilator->exam_setup_id = $request->exam_setup_id;
             $invigilator->save();
+
+            //exam_pre_pass
+            $examprepass = new ExamPrePass();
+            $examprepass->exam_setup_id = $request->exam_setup_id;
+            $examprepass->invigilator_id = $invigilator->id;
+            $examprepass->exam_password = $ExampasswordPass;
+            $examprepass->save();
+
 
             // Retrieve the exam title
             $examSetup = ExamSetup::find($request->exam_setup_id);
@@ -115,6 +124,15 @@ class InvigilatorController extends Controller
             $invigilator->exam_setup_id = $request->exam_setup_id;
             $invigilator->save();
 
+
+            $ExampasswordPass = str::random(8);
+
+            //exam_pre_pass
+            $examprepass = new ExamPrePass();
+            $examprepass->exam_setup_id = $request->exam_setup_id;
+            $examprepass->invigilator_id = $invigilator->id;
+            $examprepass->exam_password = $ExampasswordPass;
+            $examprepass->save();
             // Retrieve the exam title
             $examSetup = ExamSetup::find($request->exam_setup_id);
             $examTitle = $examSetup->exam_title;
@@ -149,7 +167,6 @@ class InvigilatorController extends Controller
         //
         $invigilator = Invigilator::findOrFail($id);
         $examSetupId = $invigilator->exam_setup_id;
-
 
         return view('examCoordinator.invigilatorManagement.show', compact('invigilator', 'examSetupId'));
     }

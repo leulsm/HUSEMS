@@ -38,7 +38,7 @@
 
                             </div>
                             <div class="invoice-title">
-                                <h2>Exam Password : Password</h2>
+                                <h2>Exam Password : {{ $examprepass->exam_password }}</h2>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -88,9 +88,37 @@
                                             remainingTimeSpan.textContent = countdown; // Update the remaining time display
                                         } else {
                                             clearInterval(intervalId); // Stop the countdown when remaining time reaches zero
-                                            remainingTimeSpan.textContent = '00:00:00';
-                                            document.getElementById('start-button').classList.remove('d-none');
+                                            remainingTimeSpan.textContent = 'Exam Started';
+                                            // window.location.href =
+                                            //     "{{ route('invigilator.updatestatus', ['invigilatorId' => $invigilator->id, 'examSetup' => $examSetup]) }}";
+                                            // document.getElementById('start-button').classList.remove('d-none');
+
                                             // document.querySelector('.start-link').parentNode.classList.remove('d-none');
+                                            var invigilatorId = "{{ $invigilator->id }}"; // Assuming $invigilator is passed to the view
+                                            var csrfToken = "{{ csrf_token() }}";
+
+                                            fetch('{{ route('invigilator.updatestatus') }}', {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                        'X-CSRF-TOKEN': csrfToken
+                                                    },
+                                                    body: JSON.stringify({
+                                                        invigilatorId: invigilatorId
+                                                    })
+                                                })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    if (data.status === 'success') {
+                                                        alert("Exam Started");
+                                                    } else {
+                                                        alert("Failed to update invigilator status.");
+
+                                                    }
+                                                })
+                                                .catch(error => {
+                                                    console.error('Error:', error);
+                                                });
                                         }
                                     }
 
@@ -103,6 +131,34 @@
                                         updateRemainingTime(remainingTimeSpan, remainingTime);
                                         remainingTime--; // Decrement the remaining time each second
                                     }, 1000);
+
+                                    function updateInvigilatorStatus() {
+                                        var invigilatorId = "{{ $invigilator->id }}"; // Assuming $invigilator is passed to the view
+                                        var csrfToken = "{{ csrf_token() }}";
+
+                                        fetch('{{ route('invigilator.updatestatus') }}', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'X-CSRF-TOKEN': csrfToken
+                                                },
+                                                body: JSON.stringify({
+                                                    invigilatorId: invigilatorId
+                                                })
+                                            })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                if (data.status === 'success') {
+                                                    alert("Exam Started");
+                                                } else {
+                                                    alert("Failed to update invigilator status.");
+
+                                                }
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+                                            });
+                                    }
                                 </script>
 
                             </div>

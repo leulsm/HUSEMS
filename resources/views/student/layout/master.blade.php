@@ -75,6 +75,7 @@
     <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
     <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
     {{-- <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.min.css') }}"> --}}
+    <script src="{{ asset('admin/assets/js/page/bootstrap-modal.js') }}"></script>
 
     <!-- General JS Scripts -->
     <script src="{{ asset('admin/assets/modules/moment.min.js') }}"></script>

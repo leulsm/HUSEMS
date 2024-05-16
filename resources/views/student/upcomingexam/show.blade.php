@@ -76,13 +76,62 @@
                                     <address>
                                         <strong>Remaining Time: </strong><br>
                                         <span id="remaining-time">{{ $remainingTime }}</span><br><br>
-                                        {{-- <button id="start-button" type="button" class="btn btn-primary d-none">Start
-                                            Exam</button> --}}
 
-                                        <a id="start-button" class="btn btn-primary d-none"
+
+                                        {{-- <a id="start-button" class="btn btn-primary d-none"
                                             href="{{ route('student.upcomingexam.create', ['examSetupId' => $examSetup->id]) }}">Start
-                                            Exam</a>
-                                        {{-- </div> --}}
+                                            Exam</a> --}}
+
+                                        <button class="btn btn-primary" id="start-exam-button">Start Exam</button>
+
+                                        <script>
+                                            document.getElementById('start-exam-button').addEventListener('click', function() {
+                                                // Prompt the user to enter the exam password
+                                                let password = prompt("Please enter the exam password:");
+
+                                                if (password) {
+                                                    // Proceed with password validation if a password was entered
+                                                    validatePassword(password);
+                                                }
+                                            });
+
+                                            function validatePassword(password) {
+                                                // Example examSetupId, replace with the actual value from your context
+                                                let examSetupId = "{{ $examSetup->id }}";
+
+                                                // CSRF token
+                                                let csrfToken = "{{ csrf_token() }}";
+
+                                                // AJAX request to validate the password
+                                                fetch('{{ route('student.validateExamPassword') }}', {
+                                                        method: 'POST',
+                                                        headers: {
+                                                            'Content-Type': 'application/json',
+                                                            'X-CSRF-TOKEN': csrfToken
+                                                        },
+                                                        body: JSON.stringify({
+                                                            password: password,
+                                                            examSetupId: examSetupId
+                                                        })
+                                                    })
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        if (data.valid) {
+                                                            // Redirect to the exam start page if password is valid
+                                                            window.location.href =
+                                                                "{{ route('student.upcomingexam.create', ['examSetupId' => $examSetup->id]) }}";
+                                                        } else {
+                                                            // Show an alert if the password is incorrect
+                                                            alert("Incorrect password. Please try again.");
+                                                        }
+                                                    })
+                                                    .catch(error => {
+                                                        console.error('Error:', error);
+                                                        alert("An error occurred. Please try again.");
+                                                    });
+                                            }
+                                        </script>
+
                                     </address>
                                 </div>
 

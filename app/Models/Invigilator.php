@@ -28,4 +28,14 @@ class Invigilator extends Model
     {
         return $this->belongsTo(ExamSetup::class);
     }
+
+    public function examPrePass()
+    {
+        return $this->hasOne(ExamPrePass::class);
+    }
+
+    public function cheatReports()
+    {
+        return $this->hasMany(CheatReport::class);
+    }
 }

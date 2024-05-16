@@ -14,8 +14,10 @@ use App\Http\Controllers\Student\UpcomingExamController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\College\CollegeController;
 use App\Http\Controllers\Department\DepartmentController;
+use App\Http\Controllers\ExamCoordinator\CheatMController;
 use App\Http\Controllers\ExamCoordinator\InvigilatorController;
 use App\Http\Controllers\Invigilator\AssignedExamController;
+use App\Http\Controllers\Invigilator\CheatReportController;
 use App\Http\Controllers\Schedule\ScheduleController;
 // use App\Http\Controllers\Student\StudentProfileController;
 
@@ -62,6 +64,7 @@ Route::middleware(['auth', 'role:examCoordinator'])->group(function () {
     Route::resource('studentManagement', StudentC::class);
     Route::resource('profileManagement', ProfileC::class);
     Route::resource('invigilatorManagement', InvigilatorController::class);
+    Route::resource('cheatM', CheatMController::class);
     Route::post('examCoordinator/student/storebulk', [StudentC::class, 'storebulk'])->name('examCoordinator.student.storebulk');;
 });
 
@@ -75,6 +78,9 @@ Route::middleware(['auth', 'role:student'])->group(function () {
     Route::get('student/upcomingexam/submit', [UpcomingExamController::class, 'submit'])->name('student.upcomingexam.submit');
     Route::get('student/upcomingexam/show/{id}', [UpcomingExamController::class, 'show'])->name('student.upcomingexam.show');
     Route::get('student/upcomingexam/finish/{id}', [UpcomingExamController::class, 'finish'])->name('student.upcomingexam.finish');
+    Route::post('student/upcomingexam/validateExamPassword', [UpcomingExamController::class, 'validateExamPassword'])->name('student.validateExamPassword');
+
+
     // Route::get('student/profile/index', [StudentProfileController::class, 'index'])->name('student.profile.index');
     // finish
     Route::get('student/takenexam/index', [TakenExamController::class, 'index'])->name('student.takenexam.index');
@@ -149,7 +155,15 @@ Route::middleware(['auth', 'role:invigilator'])->group(function () {
     // Route::get('student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
     Route::get('invigilator/assigned/index', [AssignedExamController::class, 'index'])->name('invigilator.assigned.index');
     Route::get('invigilator/assigned/show/{id}', [AssignedExamController::class, 'show'])->name('invigilator.assigned.show');
+    Route::post('invigilator/updatestatus', [AssignedExamController::class, 'updatestatus'])->name('invigilator.updatestatus');
 
+    // Route::get('invigilator/cheatreport/index', [CheatReportController::class, 'index'])->name('invigilator.cheatreport.index');
+    // Route::get('invigilator/cheatreport/index', [CheatReportController::class, 'index'])->name('invigilator.cheatreport.create');
+    // Route::get('invigilator/cheatreport/index', [CheatReportController::class, 'index'])->name('invigilator.cheatreport.store');
+    Route::resource('cheatManagement', CheatReportController::class);
+
+
+    // updateStatus
 
     //
 });

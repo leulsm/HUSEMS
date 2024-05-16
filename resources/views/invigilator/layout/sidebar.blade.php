@@ -53,9 +53,9 @@
                         class="ml-3 fa-solid fa-hourglass-start"></i>
                     <span>Assigned Exam</span></a>
             </li>
-            <li><a class="nav-link" href="{{ route('student.takenexam.index') }}"><i
+            <li><a class="nav-link" href="{{ route('cheatManagement.index') }}"><i
                         class="ml-3 fa-solid fa-sheet-plastic"></i>
-                    <span>Completed Exam</span></a>
+                    <span>Cheat Report</span></a>
             </li>
 
         </ul>

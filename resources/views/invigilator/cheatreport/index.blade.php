@@ -3,10 +3,10 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Assigned Exam</h1>
+            <h1>Cheat Report</h1>
 
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ route('invigilator.assigned.index') }}">Assigned Exam</a>
+                <div class="breadcrumb-item active"><a href="{{ route('cheatManagement.index') }}">Cheat Report</a>
                 </div>
             </div>
         </div>
@@ -69,22 +69,15 @@
                                 </div>
 
                             </div>
-                            {{-- @if ($examSetup->schedule) --}}
-                            {{-- <a href="{{ route('invigilator.assigned.show', $examSetup->id) }}" class="">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <form action="GET" class="dropzone" id="mydropzone">
-                                            <div class="mx-auto my-3 add-question" id="startButton">View</div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </a> --}}
+
                             @if ($examSetup->schedule)
-                                <a href="{{ route('invigilator.assigned.show', $examSetup->id) }}" class="">
+                                <a href="{{ route('cheatManagement.create', ['examSetupId' => $examSetup->id]) }}"
+                                    class="">
                                     <div class="row">
                                         <div class="col-12">
                                             <form action="GET" class="dropzone" id="mydropzone">
-                                                <div class="mx-auto my-3 add-question" id="startButton">View</div>
+                                                <div class="mx-auto my-3 add-question" id="startButton">Report Cheating
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -113,7 +106,7 @@
                                 </div>
                                 <h2>We couldn't find any Assigned Exam Setup data</h2>
                                 <p class="lead">
-                                    It will appear here once you are Assigned.
+                                    It will appear here once their is Active Exam.
                                 </p>
                             </div>
                         </div>
