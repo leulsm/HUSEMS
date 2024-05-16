@@ -67,6 +67,6 @@
                 </div>
             </div>
         </div>
-
+        @include('admin.dashboard.chart');
     </section>
 @endsection
