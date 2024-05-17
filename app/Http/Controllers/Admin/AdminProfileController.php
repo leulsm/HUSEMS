@@ -7,13 +7,35 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminProfileController extends Controller
 {
-    public function updateAdminProfile()
+    public function index()
     {
         //
         $user = Auth::user(); // Assuming you're using Laravel's built-in authentication
 
-        $admins = $user->admins;
+        $admin = $user->admin;
 
-        return view('admin.profile.index', compact('admins'));
+        return view('admin.profile.index', compact('admin'));
     }
+    public function updateAdminProfile(Request $request)
+    {
+        //
+
+        $admin = Admin::findOrFail($request->id);
+
+        // $examCoordinatorId = Auth::id();
+
+
+        $admin->first_name = $request->first_name;
+        $admin->last_name = $request->last_name;
+        
+
+        $admin->save();
+
+
+        toastr()->success("Updated Successfully");
+
+        return redirect()->route('admin.profile.update');
+    }
+
+
 }

@@ -1,4 +1,4 @@
-@extends('admins.layout.master')
+@extends('admin.layout.master')
 
 @section('content')
     <section class="section">
@@ -33,7 +33,7 @@
                                     <div class="profile-widget-item-value">3</div>
                                 </div>
                                 <div class="profile-widget-item">
-                                    <div class="profile-widget-item-label">ExamSetups</div>
+                                    <div class="profile-widget-item-label">Coordinator</div>
                                     <div class="profile-widget-item-value">12</div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                         <div class="profile-widget-description">
                             <div class="profile-widget-name">{{ auth()->user()->name }}<div
                                     class="text-muted d-inline font-weight-normal">
-                                    <div class="slash"></div> admins
+                                    <div class="slash"></div> admin
                                 </div>
                             </div>
 
@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-12 col-md-12 col-lg-7">
                     <div class="card">
-                        <form method="POST" action="{{ route('updateAdminProfile', $admins->id) }}">
+                        <form method="POST" action="{{route('admin.profile.update')}}">
                             @csrf
                             @method('PUT')
                             <div class="card-header">
@@ -62,7 +62,9 @@
                                     <div class="form-group col-md-6 col-12">
                                         <label>First Name</label>
                                         <input type="text" class="form-control" name="first_name"
-                                            value="{{ $admins->first_name }}" required="">
+                                            value="{{ $admin->first_name }}" required="">
+                                            <input type="text" class="form-control" name="id"
+                                            value="{{ $admin->id }}" required="" hidden>
                                         <div class="invalid-feedback">
                                             Please fill in the first name
                                         </div>
@@ -70,7 +72,7 @@
                                     <div class="form-group col-md-6 col-12">
                                         <label>Last Name</label>
                                         <input type="text" name="last_name" class="form-control"
-                                            value="{{ $admins->last_name }}" required="">
+                                            value="{{ $admin->last_name }}" required="">
                                         <div class="invalid-feedback">
                                             Please fill in the last name
                                         </div>
@@ -79,7 +81,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-7 col-12">
                                         <label>Email</label>
-                                        <input type="email" class="form-control" value="{{ $admins->email }}"
+                                        <input type="email" class="form-control" value="{{ $admin->email }}"
                                             disabled>
                                         <div class="invalid-feedback">
                                             Please fill in the email
@@ -87,7 +89,7 @@
                                     </div>
                                     <div class="form-group col-md-5 col-12">
                                         <label>Phone</label>
-                                        <input type="tel" class="form-control" value="{{ $admins->phone }}"
+                                        <input type="tel" class="form-control" value="{{ $admin->phone }}"
                                             disabled>
                                     </div>
                                 </div>

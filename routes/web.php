@@ -103,7 +103,8 @@ Route::get('admin/college/edit/{id}', [CollegeController::class, 'collegeEdit'])
 Route::put('admin/college/edit/{id}', [CollegeController::class, 'collegeUpdate'])->name('college.update');
 Route::delete('admin/college/delete/{id}', [CollegeController::class, 'destroyCollege'])->name('college.delete');
 Route::get('admin/college/search', [CollegeController::class, 'searchColleges'])->name('college.search');
-Route::get('admin/college/profile/{id}', [AdminProfileController::class, 'updateAdminProfile'])->name('updateAdminProfile');
+Route::put('admin/profile/update', [AdminProfileController::class, 'updateAdminProfile'])->name('admin.profile.update');
+Route::get('admin/profile/update', [AdminProfileController::class, 'index'])->name('update.index');
 
 
 
