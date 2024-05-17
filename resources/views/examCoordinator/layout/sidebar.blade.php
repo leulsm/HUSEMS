@@ -39,10 +39,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="#">
-                <img src="{{ asset('admin/assets/img/logo/logo.png') }}" alt="Logo" width="40" height="40">
-                Husems
-            </a>
+        <a href="#">
+        <img src="{{ asset('admin/assets/img/logo/logo.png') }}" alt="Logo" width="40" height="40">
+        Husems
+    </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="">Hu</a>
@@ -58,37 +58,23 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-book"></i>
                     <span><strong>Exam Management</strong></span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('examManagement.index') }}"><strong>Exam Setup</strong></a>
-                    </li>
-                    <li><a class="nav-link" href="{{ route('questionManagement.index') }}"><strong>Question</strong></a>
-                    </li>
-                    <li><a class="nav-link" href="{{ route('answerChoiceManagement.index') }}"><strong>Answer
-                                Options</strong></a></li>
+                    <li><a class="nav-link" href="{{ route('examManagement.index') }}"><strong>Exam Setup</strong></a></li>
+                    <li><a class="nav-link" href="{{ route('questionManagement.index') }}">Question</a></li>
+                    <li><a class="nav-link" href="{{ route('answerChoiceManagement.index') }}">Answer Options</a></li>
 
                 </ul>
-
-            </li>
-            <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i>
-                    <span><strong>Student Management</strong></span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('studentManagement.index') }}"><strong>Add
-                                Student</strong></a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
+        
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span><strong>Invigilator Management</strong></span></a>
+                    <span>Invigilator Management</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('invigilatorManagement.index') }}"><strong>Add
-                                Invigilator</strong></a></li>
+                    <li><a class="nav-link" href="{{ route('invigilatorManagement.index') }}">Add Invigilator</a></li>
                 </ul>
             </li>
 
 
             <li class=""><a class="nav-link" href="{{ route('cheatM.index') }}"><i
                         class="fas fa-columns"></i><span>
-                        <strong>Cheat Reports</strong></span></a>
+                        Cheat Reports</span></a>
             </li>
         </ul>
     </aside>
