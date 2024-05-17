@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\ExamCoordinator\AnswerChoiceController;
 use App\Http\Controllers\ExamCoordinator\ExamCoordinatorController;
 use App\Http\Controllers\ExamCoordinator\ExamManagementController;
@@ -102,6 +103,7 @@ Route::get('admin/college/edit/{id}', [CollegeController::class, 'collegeEdit'])
 Route::put('admin/college/edit/{id}', [CollegeController::class, 'collegeUpdate'])->name('college.update');
 Route::delete('admin/college/delete/{id}', [CollegeController::class, 'destroyCollege'])->name('college.delete');
 Route::get('admin/college/search', [CollegeController::class, 'searchColleges'])->name('college.search');
+Route::get('admin/college/profile/{id}', [AdminProfileController::class, 'updateAdminProfile'])->name('updateAdminProfile');
 
 
 
