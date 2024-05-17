@@ -466,7 +466,14 @@ window.addEventListener('keydown', function (e) {
         // Function to update the remaining time display
         function updateRemainingTime() {
             // Retrieve the remaining time from local storage or set it to the initial value
-            var remainingTimeInSeconds = localStorage.getItem('remainingTimeInSeconds') || {{ $remainingTimeInSeconds }};
+
+            var examSetupId = {{ $examSetup->id }};
+            var storageKey = 'remainingTimeInSeconds_' + examSetupId;
+
+            // Retrieve the remaining time for the specific examSetupId
+            var remainingTimeInSeconds = localStorage.getItem(storageKey) || {{ $remainingTimeInSeconds }};
+
+            // var remainingTimeInSeconds = localStorage.getItem('remainingTimeInSeconds') || {{ $remainingTimeInSeconds }};
             document.getElementById('remaining-time1').textContent = remainingTimeInSeconds;
 
             // Calculate remaining hours, minutes, and seconds

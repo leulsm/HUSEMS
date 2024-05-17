@@ -26,15 +26,15 @@
                             <div class="profile-widget-items">
                                 <div class="profile-widget-item">
                                     <div class="profile-widget-item-label">ExamSetups</div>
-                                    <div class="profile-widget-item-value">18</div>
+                                    <div class="profile-widget-item-value">3</div>
                                 </div>
                                 <div class="profile-widget-item">
                                     <div class="profile-widget-item-label">Students</div>
-                                    <div class="profile-widget-item-value">68</div>
+                                    <div class="profile-widget-item-value">1</div>
                                 </div>
                                 <div class="profile-widget-item">
                                     <div class="profile-widget-item-label">Questions</div>
-                                    <div class="profile-widget-item-value">21</div>
+                                    <div class="profile-widget-item-value">6</div>
                                 </div>
                             </div>
                         </div>
