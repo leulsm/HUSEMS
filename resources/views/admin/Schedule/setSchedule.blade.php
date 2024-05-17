@@ -46,21 +46,26 @@
 
                     <input type="hidden" name="exam_setup_id" value="{{ $examSetupId }}">
                     <!-- <div class="form-group">
-                          <label>Starting Date</label>
-                          <input type="text" class="form-control datepicker"name="starting_date">
-                    </div>
+                                      <label>Starting Date</label>
+                                      <input type="text" class="form-control datepicker"name="starting_date">
+                                </div>
 
-                    <div class="form-group">
-                          <label>Ending Date</label>
-                          <input type="text" class="form-control datepicker"name ="ending_date">
-                    </div> -->
+                                <div class="form-group">
+                                      <label>Ending Date</label>
+                                      <input type="text" class="form-control datepicker"name ="ending_date">
+                                </div> -->
 
 
                     <div class="form-group">
                         <label>Select Starting Date</label>
                         <input type="text" class="form-control datetimepicker " name="starting_date">
                     </div>
-                    
+
+                    <div class="form-group">
+
+                        <input type="text" class="form-control datetimepicker " name="ending_date" hidden>
+                    </div>
+
 
 
 

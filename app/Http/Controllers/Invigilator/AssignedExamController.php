@@ -49,6 +49,7 @@ class AssignedExamController extends Controller
         $invigilator = Invigilator::where('user_id', $user->id)->first();
 
         $examprepass = $invigilator->examPrePass;
+
         // dd($examprepass);
 
         return view('invigilator.assigned.show', compact('examSetup', 'remainingTime', 'start_time', 'currentTime', 'examprepass', 'invigilator'));

@@ -82,7 +82,7 @@
                                             href="{{ route('student.upcomingexam.create', ['examSetupId' => $examSetup->id]) }}">Start
                                             Exam</a> --}}
 
-                                        <button class="btn btn-primary" id="start-exam-button">Start Exam</button>
+                                        {{-- <button class="btn btn-primary" id="start-exam-button">Start Exam</button>
 
                                         <script>
                                             document.getElementById('start-exam-button').addEventListener('click', function() {
@@ -130,6 +130,30 @@
                                                         alert("An error occurred. Please try again.");
                                                     });
                                             }
+                                        </script> --}}
+
+                                        <form id="start-exam-form" method="POST"
+                                            action="{{ route('student.validateExamPassword') }}">
+                                            @csrf
+                                            <input type="hidden" name="password" id="exam-password">
+                                            <input type="hidden" name="examSetupId" value="{{ $examSetup->id }}">
+                                            <button type="button" class="btn btn-primary" id="start-exam-button">Start
+                                                Exam</button>
+                                        </form>
+
+                                        <script>
+                                            document.getElementById('start-exam-button').addEventListener('click', function() {
+                                                // Prompt the user to enter the exam password
+                                                let password = prompt("Please enter the exam password:");
+
+                                                if (password) {
+                                                    // Set the password in the hidden input field
+                                                    document.getElementById('exam-password').value = password;
+
+                                                    // Submit the form
+                                                    document.getElementById('start-exam-form').submit();
+                                                }
+                                            });
                                         </script>
 
                                     </address>
@@ -162,7 +186,7 @@
                                         } else {
                                             clearInterval(intervalId); // Stop the countdown when remaining time reaches zero
                                             remainingTimeSpan.textContent = '00:00:00';
-                                            document.getElementById('start-button').classList.remove('d-none');
+                                            // document.getElementById('start-button').classList.remove('d-none');
                                             // document.querySelector('.start-link').parentNode.classList.remove('d-none');
                                         }
                                     }

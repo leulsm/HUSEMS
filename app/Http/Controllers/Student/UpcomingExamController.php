@@ -244,8 +244,10 @@ class UpcomingExamController extends Controller
     public function validateExamPassword(Request $request)
     {
 
+        // dd($request);
         $request->validate([
-            'examSetupId' => 'required|exists:exam_pre_passes,exam_setup_id',
+            'examSetupId' => 'required',
+            // 'examSetupId' => 'required|exists:exam_pre_passes,exam_setup_id',
             'password' => 'required'
         ]);
 
@@ -256,9 +258,11 @@ class UpcomingExamController extends Controller
         Log::info('ExamPrePass:', ['examPrePass' => $examPrePass]); // Log the fetched ExamPrePass record
 
         if ($examPrePass && $examPrePass->exam_password === $request->password) {
-            return response()->json(['valid' => true]);
+            // return response()->json(['valid' => true]);
+            return to_route('student.upcomingexam.create', ['examSetupId' => $request->examSetupId]);
         } else {
-            return response()->json(['valid' => false]);
+            toastr()->error("The password is not correct");
+            return redirect()->back();
         }
     }
 }
