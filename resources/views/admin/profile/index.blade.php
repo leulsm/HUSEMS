@@ -26,15 +26,17 @@
                             <div class="profile-widget-items">
                                 <div class="profile-widget-item">
                                     <div class="profile-widget-item-label">Colleges</div>
-                                    <div class="profile-widget-item-value">5</div>
+                                    <div class="profile-widget-item-value">2</div>
                                 </div>
                                 <div class="profile-widget-item">
-                                    <div class="profile-widget-item-label">Departments</div>
+                                    <div class="profile-widget-item-label">Exam Setups</div>
                                     <div class="profile-widget-item-value">3</div>
                                 </div>
                                 <div class="profile-widget-item">
                                     <div class="profile-widget-item-label">Coordinator</div>
-                                    <div class="profile-widget-item-value">12</div>
+                                    <div class="profile-widget-item-value">
+                                    2
+                                    </div>
                                 </div>
                             </div>
                         </div>

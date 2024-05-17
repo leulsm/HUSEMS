@@ -36,7 +36,7 @@
                             <h4>Total Colleges</h4>
                         </div>
                         <div class="card-body">
-                            3
+                            {{ $collegeCount }}
                         </div>
                     </div>
                 </div>
@@ -48,10 +48,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Total Coordinator</h4>
+                            <h4>Total Exam Coordinator</h4>
                         </div>
                         <div class="card-body">
-                            5
+                            {{ $examCoordinatorCount }}
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                             <h4>Total Exam Setup</h4>
                         </div>
                         <div class="card-body">
-                            4
+                            {{ $examSetupCount }}
                         </div>
                     </div>
                 </div>

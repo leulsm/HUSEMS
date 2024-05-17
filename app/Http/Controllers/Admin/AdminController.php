@@ -28,7 +28,7 @@ class AdminController extends Controller
         $chartLabels = ['Colleges', 'Departments', 'Exam Coordinators', 'Exam Setups', 'Schedules'];
         $chartData = [$collegeCount, $departmentCount, $examCoordinatorCount, $examSetupCount, $scheduleCount];
 
-        return view('admin.dashboard.index', compact('chartLabels', 'chartData'));
+        return view('admin.dashboard.index', compact('chartLabels', 'chartData','collegeCount','examCoordinatorCount','examSetupCount'));
         
     }
 

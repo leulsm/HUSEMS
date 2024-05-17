@@ -19,8 +19,7 @@ class AdminProfileController extends Controller
     public function updateAdminProfile(Request $request)
     {
         //
-
-        $admin = Admin::findOrFail($request->id);
+        $admin = Admin::findOrFail($id);
 
         // $examCoordinatorId = Auth::id();
 
@@ -34,7 +33,7 @@ class AdminProfileController extends Controller
 
         toastr()->success("Updated Successfully");
 
-        return redirect()->route('admin.profile.update');
+        return redirect()->route('updateAdminProfile');
     }
 
 
