@@ -36,7 +36,7 @@ class ExamCoordinatorController extends Controller
 
         $examSetups = ExamSetup::where('exam_coordinator_id', $user->id)->get();
 
-        $examSetups = ExamSetup::withCount('students', 'questions')->get();
+        $examSetups = ExamSetup::where('exam_coordinator_id', $user->id)->withCount('students', 'questions')->get();
 
         $labels = $examSetups->pluck('exam_title')->toArray();
         $studentData = $examSetups->pluck('students_count')->toArray();
@@ -83,10 +83,12 @@ class ExamCoordinatorController extends Controller
         $examCoordinator->email = $request->email;
         $examCoordinator->phone = $request->phone;
         $examCoordinator->save();
+        $fullname =   $request->first_name . ' ' . $request->last_name;
 
 
         $data = [
-            'username' => $request->email,
+            'fullname' => $fullname,
+            'email' => $request->email,
             'password' => $password,
         ];
 
@@ -98,11 +100,12 @@ class ExamCoordinatorController extends Controller
     }
 
 
-    function examCoordinatorList(){
+    function examCoordinatorList()
+    {
 
         $list = examCoordinator::all();
 
-        return view('admin.examCoordinator.examCoordinatorList',compact('list'));
+        return view('admin.examCoordinator.examCoordinatorList', compact('list'));
     }
 
 
@@ -119,17 +122,17 @@ class ExamCoordinatorController extends Controller
 
 
 
-    function examCoordinatorDetail(string $id){
+    function examCoordinatorDetail(string $id)
+    {
         $examCoordinator = ExamCoordinator::findOrFail($id);
         //$examSetupId = $student->exam_setup_id;
-        return view('admin.examCoordinator.examCoordinatordetail',compact('examCoordinator'));
-
+        return view('admin.examCoordinator.examCoordinatordetail', compact('examCoordinator'));
     }
-    function examCoordinatorEdit(string $id){
+    function examCoordinatorEdit(string $id)
+    {
         $examCoordinator = ExamCoordinator::findOrFail($id);
         //$examSetupId = $student->exam_setup_id;
-        return view('admin.examCoordinator.examCoordinatoredit',compact('examCoordinator'));
-
+        return view('admin.examCoordinator.examCoordinatoredit', compact('examCoordinator'));
     }
     public function examCoordinatorUpdate(Request $request, string $id)
     {
@@ -152,27 +155,22 @@ class ExamCoordinatorController extends Controller
     }
 
     public function destroyexamCoordinator(string $id)
-{
-    $examCoordinator = ExamCoordinator::findOrFail($id);
-    $examCoordinator->delete();
+    {
+        $examCoordinator = ExamCoordinator::findOrFail($id);
+        $examCoordinator->delete();
 
-    return redirect()->route('examCoordinatorList', $examCoordinator->id)->with('success', 'Exam Coordinator deleted successfully.');
+        return redirect()->route('examCoordinatorList', $examCoordinator->id)->with('success', 'Exam Coordinator deleted successfully.');
+    }
+
+    public function searchExamCoordinator(Request $request)
+    {
+        $searchValue = $request->input('search');
+
+        $examCoordinator = ExamCoordinator::where('first_name', 'LIKE', '%' . $searchValue . '%')->get();
+        $examCoordinator = ExamCoordinator::where('last_name', 'LIKE', '%' . $searchValue . '%')->get();
+
+
+
+        return view('admin.examCoordinator.examCoordinatorList', ['list' => $examCoordinator]);
+    }
 }
-
-public function searchExamCoordinator(Request $request)
-{
-    $searchValue = $request->input('search');
-
-    $examCoordinator = ExamCoordinator::where('first_name', 'LIKE', '%'.$searchValue.'%')->get();
-    $examCoordinator = ExamCoordinator::where('last_name', 'LIKE', '%'.$searchValue.'%')->get();
-
-
-
-    return view('admin.examCoordinator.examCoordinatorList', ['list' => $examCoordinator]);
-}
-}
-
-
-
-
-

@@ -74,8 +74,23 @@
                                 </div> --}}
                                 <div class="col-md-6 text-md-left">
                                     <address>
-                                        <strong>Remaining Time: </strong><br>
-                                        <span id="remaining-time">{{ $remainingTime }}</span><br><br>
+                                        <div class="row">
+                                            <div class="col-12 col-md-4 col-lg-4">
+                                                <div class="pricing pricing-highlight">
+                                                    <div class="pricing-title">
+                                                        Remaining Time
+                                                    </div>
+                                                    <div class="pricing-padding">
+                                                        <div class="pricing-price">
+                                                            <div> <span id="remaining-time">{{ $remainingTime }}</span><br>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- <strong>Remaining Time: </strong><br>
+                                        <span id="remaining-time">{{ $remainingTime }}</span><br><br> --}}
 
 
                                         {{-- <a id="start-button" class="btn btn-primary d-none"
@@ -137,7 +152,8 @@
                                             @csrf
                                             <input type="hidden" name="password" id="exam-password">
                                             <input type="hidden" name="examSetupId" value="{{ $examSetup->id }}">
-                                            <button type="button" class="btn btn-primary" id="start-exam-button">Start
+                                            <button type="button" class="btn btn-primary d-none"
+                                                id="start-exam-button">Start
                                                 Exam</button>
                                         </form>
 
@@ -186,7 +202,7 @@
                                         } else {
                                             clearInterval(intervalId); // Stop the countdown when remaining time reaches zero
                                             remainingTimeSpan.textContent = '00:00:00';
-                                            // document.getElementById('start-button').classList.remove('d-none');
+                                            document.getElementById('start-exam-button').classList.remove('d-none');
                                             // document.querySelector('.start-link').parentNode.classList.remove('d-none');
                                         }
                                     }
